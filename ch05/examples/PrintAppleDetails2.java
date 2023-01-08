@@ -1,4 +1,4 @@
-package ch05;
+//package ch05.examples;
 
 /**
  * Another quick example of working with an object. This time we print

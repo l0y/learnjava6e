@@ -1,4 +1,5 @@
-package ch06;
+//package ch06.solutions;
+
 import java.util.logging.Logger;
 
 public class Euclid2 {

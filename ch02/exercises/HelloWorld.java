@@ -1,4 +1,4 @@
-package exercises.ch02;
+//package ch02.exercises;
 
 /**
  * A simple variation on the commandline version

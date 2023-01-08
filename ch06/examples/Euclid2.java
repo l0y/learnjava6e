@@ -1,4 +1,4 @@
-package ch06;
+//package ch06.examples;
 
 /**
  * A basic implementation of Euclid's greatest common denominator

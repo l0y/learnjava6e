@@ -1,4 +1,4 @@
-package ch05;
+//package ch05.examples;
 
 /**
  * A variation on PrintAppleDetails2 where we have moved the printing code

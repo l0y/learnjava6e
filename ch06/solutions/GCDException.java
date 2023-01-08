@@ -1,4 +1,4 @@
-package ch06;
+//package ch06.solutions;
 
 public class GCDException extends Exception {
   private int badA;

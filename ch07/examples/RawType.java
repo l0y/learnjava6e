@@ -1,3 +1,5 @@
+//package ch07.examples;
+
 import java.util.*;
 
 public class RawType {

@@ -1,3 +1,5 @@
+//package ch07.solutions;
+
 public class Employee {
   private Integer id;
   private String first;

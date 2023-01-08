@@ -1,4 +1,4 @@
-package ch08;
+//package ch08.solutions;
 
 import java.awt.*;
 import java.awt.event.*;

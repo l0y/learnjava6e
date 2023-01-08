@@ -1,4 +1,4 @@
-package ch05;
+//package ch05.examples;
 
 /**
  * A simple demonstration of accessing the contents of an object. We create

@@ -1,4 +1,4 @@
-package ch04;
+//package ch04.solutions;
 
 public class VisualTriangle {
   public static void main(String args[]) {

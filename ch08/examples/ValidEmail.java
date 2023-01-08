@@ -1,3 +1,5 @@
+//package ch08.examples;
+
 import java.util.regex.Pattern;
 
 public class ValidEmail {

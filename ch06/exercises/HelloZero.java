@@ -1,4 +1,4 @@
-package ch06;
+//package ch06.exercises;
 
 import java.awt.*;
 import java.awt.event.*;

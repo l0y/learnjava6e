@@ -1,4 +1,5 @@
-package ch06;
+//package ch06.examples;
+
 import java.util.logging.*;
 
 public class LogTest {
