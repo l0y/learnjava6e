@@ -1,4 +1,4 @@
-//package ch07.exercises.game;
+//package ch05.exercises.game;
 
 import javax.swing.*;
 
@@ -16,7 +16,7 @@ public class AppleToss extends JFrame {
         // Create our frame
         super("Apple Toss Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,600);
+		setSize(800,600);
         setResizable(false);
 
         // Build the field with our player and some trees
@@ -31,17 +31,9 @@ public class AppleToss extends JFrame {
         player1.setPosition(100,500);
         field.setPlayer(player1);
         player1.setField(field);
-        
-        // Place our lone hedge
-	field.setupHedge();
-
-        // And now make a few trees for target practice
-        for (int row = 1; row <= 2; row++) {
-            for (int col = 1; col <=3; col++) {
-                field.addTree(col * 100, row * 100);
-            }
-        }
-        add(field);
+		field.setupApples();
+		field.setupTree();
+		add(field);
     }
 
     public static void main(String args[]) {
