@@ -1,0 +1,571 @@
+00-ti Learning Java, 6e
+00-in This application presents a series of review questions taking from  Learning Java, 6e, by Marc Loy, Patrick Niemeyer, and Daniel Leuck. The questions have been adapted slightly to support multiple choice. Feel free to bounce around. You can come back to any chapter at any time. And don't be afraid to get an answer wrong. We try to provide useful feedback on both the correct and incorrect answers. They say you can learn a lot from your mistakes and we hope that's true in this review!\n\nTo get started, just click on one of the chapters in the list on the left. You can also expand any of the chapters to navigate to a particular question.
+
+###
+# Chapter 1, 3 questions
+###
+10-tx A Modern Language
+10-in This chapter introduces Java and its history and ecosystem. Knowledge of where Java came from and how its future will be managed helps ground you for the exploration to come.
+
+11-tx Which company currently maintains Java?
+11-se (Select one)
+11Atw Sun Microsystems
+11Aex While Java was developed in the 90s at Sun Microsystems, Oracle purchased Sun (and thus Java) in 2009.
+11Btc Oracle Corporation
+11Bex Oracle maintains ownership and is an active partner in the development and distribution of its own commercial JDK and the open source OpenJDK.
+11Ctw Microsoft
+11Cex Microsoft certainly has ties to (and lawsuits about) Java, but they do not manage its development. 
+11Dtw Apache Foundation
+11Dex The Apache Foundation and its developers continue to contribute to the Java ecosystem, but they do not maintain the language or its core modules.
+
+12-tx What is the name of the open source development kit for Java?
+12-se (Select one)
+12Atw FreeJ
+12Aex We made this name up, but it feels like something that might actually exist already. :)
+12Btw C#
+12Bex C# is the name of Microsoft's proprietary language based (heavily) on Java.
+12Ctc OpenJDK
+12Cex The open source version of the JDK is indeed known as the OpenJDK.
+12Dtw Java Classic
+12Dex Sadly this soft drink-inspired variation is something we made up.
+
+13-tx Name the components that play a role in Java's approach to securely running bytecode.
+13-se (Select all that apply)
+13-co 4
+13Atc The Security Manager
+13Aex The Security Manager plays an important role. It is responsible for making application-level security decisions.
+13Btc The Bytecode Verifier
+13Bex The verifier is the first component in Java's execution process. It reads bytecode before it is run and makes sure it is well-behaved.
+13Ctw The Cryptography Extensions
+13Cex Java can certainly handle cryptographic tasks and secure protocols such as encoding, decoding, or HTTPS, but these features are not part of its approach to bytecode security.
+13Dtc The Class Loader
+13Dex The class loader sits in the middle of Java's security process. After verifying the bytecode, Java uses a class loader to bring that bytecode into the interpreter.
+
+###
+# Chapter 2, 5 questions
+###
+20-ti A First Application
+20-in This chapter covered some simple Java code including the canonical first application, "Hello, world."
+
+21-tx What command do you use to compile a Java source file?
+21-se (Select one)
+21Atc javac
+21Aex If you are working in a terminal, the javac command compiles Java source files. While the details are often hidden when using an IDE like IntelliJ IDEA, the IDE is also using javac behind the scenes.
+21Btw javap
+21Bex The javap command is actually a decompiling tool. It can be useful for low-level debugging work, especially if you must debug classes you didn't create or don't have the source code for.
+21Ctw java
+21Cex The java command can run a compiled class, but it cannot compile the class itself.
+21Dtw gcc
+21Dex The GNU C Compiler (gcc) can compile a great many things (we're legitimate fans) but it does not work with Java source files.
+
+22-tx How does the JVM know where to start when you run a Java application?
+22-se (Select one)
+22Atw It asks when you start the JVM
+22Aex The JVM doesn't really have an interactive mode, although jshell does allow you to play with different classes. But running the java command with no arguments will simply print out an informational message on how to use the java command. :)
+22Btw All applications written in Java must include a class named StartHere.
+22Bex While such a self-explanatory class name seems an easy way to go, Java does not look for any particular class when starting.
+22Ctw Java does not have a way to run classes. You have to use a browser.
+22Cex Happily this is not the case. Java used to have applets that would execute in a browser, and all modern browsers support JavaScript--which feels kinda like Java--but a browser is not how you run Java code.
+22Dtc The class you specify after the java command must include a main() method.
+22Dex Any executable Java class must have a ++main()++ method defined. The JVM uses this method as the entry point. The name of the class does not play a role in startup.
+
+23-tx Can you extend more than one class when creating a new class?
+23-se (Select the best match)
+23Atw Yes. All object-oriented languages, including Java, allow multiple inheritence.
+23Aex Not really. Many OO languages do support multiple inheritence, but Java does not.
+23Btc No. Java does not support direct multiple inheritence from multiple, separate classes.
+23Bex Java only supports direct inheritence from one class. Java has other features, like interfaces, which provide many of the benefits of multiple inheritence.
+23Ctw No. Java does not support inheritence at all.
+23Cex No inheritence at all would make Java a very different language! Java does support single inheritence.
+23Dtw Yes, but only if the extended classes are included in the same source file.
+23Dex While you can imagine such a limitation on what can be used in multiple inheritence might work, Java does not support even limited multiple inheritence.
+
+24-tx Can you implement more than one interface when creating a new class?
+24-se (Select the best match)
+24Atw No. Similar to extending classes, Java only allows you to implement one interface at a time.
+24Aex Java does allow you to implement multiple interfaces. This is the primary means of mimicking the multiple inheritence found in some other object-oriented languages.
+24Btw No. Interfaces and classes are separate and incompatible.
+24Bex As classes are Java's primary unit of organization, it would be quite a problem if interfaces were incompatible! You implement interfaces for a class and you can implement several if necessary. 
+24Ctc Yes. Java allows you to implement as many interfaces as needed.
+24Cex Using interfaces provides programmers with most of the useful features of multiple inheritence without many of the pitfalls.
+24Dtw Sort of. Java allows you to implement at most two interfaces in a given class.
+24Dex Happily Java does not have any such limitation. You can implement as many interfaces as makes sense.
+
+25-tx Which class represents the window in a graphical application?
+25-se (Select one)
+25Atc JFrame
+25Aex The JFrame class represents the main window used in Java graphical applications, although later chapters will introduce you to some lower-level classes that can also create specialized windows.
+25Btw StartHere
+25Bex While you might create a graphical application with a main() method in a class you called StartHere, that class is not part of the Java core.
+25Ctw JSwing
+25Cex Fun name for a class, but it's not part of Java's classes.
+25Dtw JComponent
+25Dex While JComponent is a parent to several classes used in graphical interfaces, it does not represent the main window of an application.
+
+
+###
+# Chapter 3
+###
+30-ti Tools of the Trade
+30-in There are several applications and utilities that go into day-to-day Java development. Many folks tuck these utilities out of the way behind integrated development enviroments (IDEs) such as IntelliJ IDEA from JetBrains. You can also work with these utilities directly on the command line. This chapter looks at both approaches as you get ready to become a productive coder.
+
+31-tx What options do you use to look at the contents of a JAR file without unpacking it?
+31-se (Select one)
+31Atw jar xf MyApp.jar
+31Aex The x flag in "xf" is used for extracting the contents of a JAR or ZIP file.
+31Btw jar cvf MyApp.jar
+31Bex The c flag in "cvf" is used for creating new JAR and ZIP files.
+31Ctw jar f MyApp.jar
+31Cex The f flag on its own is insufficient. The jar command needs at least one other flag to know what you need done with the supplied file.
+31Dtc jar tvf MyApp.jar
+31Dex The tvf flags represent the "table of contents" (t), "verbose" (v), and "file" (f flag followed by a filename). This will show you everything in the file without actually extracting it.
+
+32-tx What flags allow you to compile a Java program that includes preview feature code?
+32-se (Select one)
+32Atw --enable-preview
+32Aex The --enable-preview flag is sufficient when running a Java application that contains preview features, but it is not enough when compiling.
+32Btc --enable-preview and --release
+32Bex When compiling a Java class that relies on a preview feature, you must supply the --enable-preview and either the -source or --release flags to javac.
+32Ctw --extras and -source
+32Cex The -source flag can play a roll in compiling preview feature code, but --extras is not a valid option to javac.
+32Dtw --new-features
+32Dex Sure seems like this would do the trick, but --new-features is not a valid option to javac.
+
+33-tx What flags allow you to run a Java program that includes preview feature code?
+33-se (Select one)
+33Atc --enable-preview
+33Aex When running a compile class that includes a preview feature, you only need to supply the --enable-preview flag.
+33Btw --new-features
+33Bex Sure seems like this would do the trick, but --new-features is not a valid option to java.
+33Ctw --release
+33Cex This flag is used when compiling and cannot be used to enable preview features when running an app with the java command.
+33Dtw --version
+33Dex While this is a valid flag to the java command, it simply prints the JDK version information to the screen.
+
+34-tx What entry is required in the MANIFEST.MF file to make a JAR file executable?
+34-se (Select one)
+34Atc Main-Class
+34Aex You must include an entry for Main-Class that gives the fully-qualified name of a class with a valid main() method to make a given JAR file executable.
+34Btw Created-By
+34Bex This entry typically indicates the version and vendor of Java used to create the JAR file.
+34Ctw Class-Path
+34Cex This entry can specify the location of extra classes or libraries that your application needs to run. It does not affect the executable nature of the JAR file.
+34Dtw Nothing extra is required
+34Dex While nothing extra is required to create a valid JAR file that will be used as a library, the default manifest file is not sufficient to create an executable JAR file.
+
+35-tx What tool allows you to try out Java code in an interactive fashion?
+35-se (Select one)
+35Atw java
+35Aex You use the java command to run a compiled application from classes or a JAR file.
+35Btw javac
+35Bex The javac command is used to compile Java source files into bytecode.
+35Ctc jshell
+35Cex You can run jshell from a terminal to try simple Java code interactively.
+35Dtw jar
+35Dex The jar utility can create and unpack JAR files, but it does provide any interactive behaviors.
+
+###
+# Chapter 4
+###
+40-ti The Java Language
+40-in Java picked up several syntax and grammar designs from other languages and added a few features of its own. This chapter covers that control structures and other language elements that go into your day-to-day use when writing Java source code.
+
+41-tx What text encoding format is used by default by Java in compiled classes?
+41-se (Select one)
+41Atw ASCII
+41Aex While popular and common in Western and English-speaking countries, ASCII is too limited to encode the characters of some languages and special glyphs such as emoji characters.
+41Btw ISO-8859-1
+41Bex This encoding handles "Latin" characters nicely but is otherwise limited. It is not the default used by Java, but legacy text files may still use it.
+41Ctc UTF-8
+41Cex By default, Java uses the 8-bit Unicode Transformation Format (UTF-8) encoding. This encoding enjoys wide usage online. The 8-bit (or one byte) encoding can accommodate both single and multibyte characters.
+41Dtw UTF-16
+41Dex The 16-bit UTF encoding is used by Java to store strings internally, but it is not the default encoding for file operations or other input/output tasks.
+
+42-tx What characters are used to enclose a multiline comment? Can those comments be nested?
+42-se (Select one)
+42Atc /* */ -- these cannot be nested
+42Aex Java borrows from C and C++ for its comment syntax. Single line comments begin with two slashes (//) while multiline comments are enclosed in /* and */ pairs. The multiline style can also be used to embed small comments in the middle of a line of code, but they cannot be nested.
+42Btw // -- these cannot be nested
+42Bex The double-slash creates a one-line comment in Java; it does handle multiple lines. (Although you can certainly comment out several lines in a row by using // at the beginning of each line.)
+42Ctw // -- these can be nested
+42Cex The double-slash creates a one-line comment in Java. You can technically "nest" these comments in that you are not restricted from using another double-slash on the commented line, but nesting is not really something you think about on a single line of source code.
+42Dtw # -- these can be nested
+42Dex The hash sign (#, or pound sign, or hashtag) is a popular one-line comment character for many languages and shells, but it is not used by Java.
+
+43-tx Which looping constructs does Java support?
+43-se (Select all that apply)
+43Atc for (standard)
+43Aex Java supports the classic for loop which is good for counting or traversing a range.
+43Btc for (enhanced)
+43Bex Java supports an enhanced for loop which is good for iterating over collections.
+43Ctc while
+43Cex Java supports while loops which are good for any condition-based repetition.
+43Dtc do (sometimes called do/while)
+43Dex Java supports do/while loops which are good for condition-based repetition where you also need to guarantee at least one run of the loop.
+
+44-tx In a chain of if/else if/else tests, what happens if multiple conditions are true?
+44-se (Select one)
+44Atw Every block with a condition that evaluates to true gets executed
+44Aex Multiple matches are definitely possible, but if/else if/else chains only execute one block.
+44Btc The block associated with the first test that evaluates to true will be executed
+44Bex The block with the first true condition will be executed. After that block completes, control resumes after the entire chain--regardless of how many other tests would have also returned true.
+44Ctw The block associated with the last test that evaluates to true will be executed
+44Cex While a reasonable guess, Java will stop evaluating conditions in a chain after one true condition has been found.
+44Dtw The block that gets executed is essentially chosen at random. Overlapping conditions should be avoided
+44Dex Happily this is not the case. These if/else if/else chains appear in many languages and all of them have well-defined behavior.
+
+45-tx If you wanted to store the US stock market's total capitalization (roughly $31 trillion at the close of fiscal year 2022) as whole dollars, what primitive data type could you use?
+45-se (Select one)
+45Atw double
+45Aex While the double type could be used, as the numbers get larger, their precision falls off.
+45Btw int
+45Bex The int type is too small, with a maximum of roughly 2.4 billion.
+45Ctw String
+45Cex The String "type" is not a primitive type in Java, it is an object type. You could, however, still use it to store the correct numeric characters of the huge number. You just couldn't do any math with that representation.
+45Dtc long
+45Dex You could use the long integer type, it can store numbers up to 9 quintillion (positive or negative).  And since "whole dollars" implies no fractions, an integer type makes more sense.
+
+46-tx Given the expression: 18 - 7 * 2, what will it evaluate to?
+46-se (Select one)
+46Atc Answer A
+46Aex This is an order-of-precedence question. The multiplication of 7 and 2 will occur first, then the subtraction. The final answer is 4.
+46Btw 22
+46Bex This answer probably came from performing the operations left-to-right. If you actually want that result, you could enclose the "18 - 7" portion inside parentheses (just like this aside).
+46Ctw 1872
+46Cex What a fun (if wrong) answer--just concatenate all the numbers! Happily Java actually does the math for us.
+46Dtw 29
+46Dex If you go "outside in" you could multiply 18 by 2 and then subtract 7, but that would make for very very messy expressions and is not how Java evaluates such things.
+
+47-tx How might you create and initialize an array holding the names of the days of the week?
+47-se (Select the best option)
+47Atw Just use the built-in String.weekdays array
+47Aex The String class does not have any such predefined array--but it's a fun idea!
+47Btw String weekdays[7];
+47Bex While this declaration would correctly make room to store seven names, it does not complete the job.
+47Ctw char[] weekdays = "SunMonTueWedThuFriSat";
+47Cex Java stores names as String objects, so the char type isn't well suited to this task. Java also does not support initializing character arrays from a String.
+47Dtc String weekdays[] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+47Dex You can create and initialize an array using curly braces.
+
+###
+# Chapter 5
+###
+50-ti Objects in Java
+50-in With the basic syntax of Java under your belt, this chapter takes you on a tour of Java objects. Objects are critical to programming in Java--perhaps unsurprisining for an object-oriented language.
+
+51-tx What is the primary organizing unit in Java?
+51-se (Select one)
+51Atc Class
+51Aex The main "unit" in Java is a class. Many other structures play important roles, of course, but you can't use any of those other things without at least one class.
+51Btw Variable
+51Bex Variables are certainly important to Java, as they are in just about every programming language. But variables are declared inside other structures in Java and play a supporting role.
+51Ctw Function
+51Cex Recent releases of Java do support a more "functional" approach to problem solving, but we don't generally talk about Java having functions.
+51Dtw File
+51Dex We do store our Java source code in files, and the compiled classes show up as files as well. But its the contents of the files that matter more to Java.
+
+52-tx What operator do you use to create an object (or instance) from a class?
+52-se (Select one)
+52Atw ++
+52Aex The "increment" operator is a nifty shortcut for adding 1 to numeric variables. It cannot be used to create new objects.
+52Btw instanceof
+52Bex While the "instanceof" operator sounds plausible, it can only be used for testing whether an existing object is an "instance of" a class; it cannot create a new instance of a class.
+52Ctc new
+52Cex The ++new++ operator instantiates an object from a class and calls the appropriate constructor.
+52Dtw main
+52Dex Executable Java classes have a main() method, but the name "main" itself is not an operator and has no bearing on the creation of objects.
+
+53-tx Java does not support classic multiple inheritance. What mechanisms does Java provide as alternatives?
+53-se (Select all that apply)
+53Atw Inner Classes
+53Aex Inner classes do not help with multiple inheritence, although they do make it easier to encapsulate some bits of logic.
+53Btw Overloading
+53Bex The process of overloading a method can make for very flexible classes, but overloading is not a replacement for multiple inheritence.
+53Ctw Classes
+53Cex Classes play an important role in Java, but they do not enable or mimic multiple inheritence.
+53Dtc Interfaces
+53Dex Java uses interfaces to accomplish most of the goals of multiple inheritance found in many other object-oriented languages.
+
+54-tx How can you organize multiple, related classes?
+54-se (Select one)
+54Atw Place each related class in the same file
+54Aex While placing classes in the same file is allowed in Java, it is not a good strategy for organizing related classes.
+54Btc Place each related class in the same package
+54Bex You place related classes in a package. In your filesystem, a package appears as nested folders. In your code, packages use dot-separated names.
+54Ctw Place each related class in the same JAR file
+54Cex JAR file are great for storing the classes necessary for an application or library, but they have no particular effect on how the contained classes are related.
+54Dtw All classes in Java are related, there's nothing special to do
+54Dex All classes in Java do have the java.lang.Object class as a shared parent, but a shared ancestor is too weak of a relationship for many situations.
+
+55-tx How do you include classes from other packages for use in your own code?
+55-se (Select one)
+55Atw Specify them on the commmand line when compiling
+55Aex While you can augment the classes available with the -classpath command-line argument, this step is not sufficient to make the classes available in your code.
+55Btw Rename them with your email domain
+55Bex Renaming a class won't change its availability, even if you have access to the original source of the class.
+55Ctc Use the import statement
+55Cex You can import other individual classes or entire packages for your own use.
+55Dtw Place the necessary package in your JAR file
+55Dex You may need to include some external packages in a JAR file you plan to distribute for others to run, but this is insufficient for using the classes in that package in your own code.
+
+56-tx What do you call a class defined inside the scope of another class?
+56-se (Select one)
+56Atc Inner class
+56Aex A simple class defined within the curly braces of another class (not just in the same file) is called an inner class. Inner classes have access to all the variables and methods of the outer class&mdash;including private members. They can be used to help break up your code into manageable and reusable pieces while providing good control over who else can use them.
+56Btw Anonymous class
+56Bex Anonymous (inner) classes are a popular technique for encapsulating small, one-off bits of logic. But not all inner classes are anonymous.
+56Ctw Interface
+56Cex Interfaces are not classes. They represent Java's alternative to multiple inheritence and are not typically defined inside the scope of another class.
+56Dtw Record
+56Dex Records are specialized classes for handling simple data containers. While they can be declared inside the scope of another class, not all such declarations are records.
+
+57-tx What do you call a method designed to be overridden that has a name, return type, and argument list, but no body?
+57-se (Select one)
+57Atw A constructor
+57Aex Constructors initialize newly created objects and must have a body defined.
+57Btc An abstract method
+57Bex Methods defined with only their signatures are known as abstract methods. Including an abstract method in a class makes the class abstract as well. The abstract class cannot be instantiated. You must create a subclass and then provide a real body for the abstract method to use it.
+57Ctw An interface
+57Cex Interfaces do contain methods you must provide bodies for, but they are not methods themselves.
+57Dtw A static method
+57Dex Static methods do not require an instance of their defining class to be useful. They are not inherited and must include a body.
+
+58-tx What is an overloaded method?
+58-se (Select one)
+58Atw The method that Java uses to begin execution of an application
+58Aex The static main() method is used for executing classes, but it is not typically overloaded.
+58Btw A method that is defined in both a class and that class's parent class
+58Bex Providing a new definition for a method you inherited from a parent class is called overriding.
+58Ctw A method that has too much source code
+58Cex While there are definitely "reasonable" limits to the amount of logic you should place in one method, there is no official term for this inadvisable coding practice. Perhaps an overworked method? ;)
+58Dtc Several distinct methods that share the same name but different arguments
+58Dex Java allows you to use the same method name with different types or numbers of arguments. If two methods share the same name, they are said to be overloaded. Overloading makes it possible to create a batch of methods that do the same logical work on disparate arguments.
+
+59-tx If you want to make sure no other class can use a variable you have defined, what access modifier should you use?
+59-se (Select one)
+59Atw public
+59Aex Public variables are just that--available to any other class. This can open the door for difficult, confusing bugs and is generally discouraged.
+59Btc private
+59Bex The private access modifier for a variable (or a method, or indeed an entire inner class) restricts its use to the class where it is defined.
+59Ctw package
+59Cex Java packages organize groups of classes. While they do have some effect on the availability of things like variables and methods, they do not block all access.
+59Dtw static
+59Dex A static variable is simply one associated directly with a class and not an instance. It can be hidden or publicized just like any other variable.
+
+###
+# Chapter 6
+###
+60-ti Error Handling and Logging
+60-in Once your programs reach even a modest level of complexity, you'll need tools to help find and fix problems in your code. This chapter looks at Java's mechanisms for handling and reporting errors. Managing errors appropriately leads to a better user experience even when things go wrong.
+
+61-tx What statement do you use to manage potential exceptions in your code?
+61-se (Select one)
+61Atw assert()
+61Aex Assertions (coded with the assert() method) can help with managing problems in code, but they are meant to validate your assumptions about the state of your application. They cannot handle exceptions.
+61Btw main()
+61Bex The main() method lets Java know where to start executing your application, but it does not handle exceptions directly.
+61Ctw System.out.println()
+61Cex Print statements have a special place in the debugging pantheon for fixing problems, but they do not handle exceptions.
+61Dtc try/catch
+61Dex You can use a try/catch block around any statement or group of statements that might generate an exception. If an exception occurs, code in a catch block can be used to mitigate the error or at least provide the user a polite message.
+
+62-tx Which exceptions does the compiler require you to handle or throw?
+62-se (Select one)
+62Atw Runtime exceptions
+62Aex Java does not require you to manage runtime (sometimes called unchecked) exceptions. You can certainly use typical features like try/catch blocks with unchecked exceptions, but it is not required.
+62Btw Unchecked exceptions
+62Bex Java does not require you to manage unchecked (sometimes called runtime) exceptions. You can certainly use typical features like try/catch blocks with unchecked exceptions, but it is not required.
+62Ctc Checked exceptions
+62Cex In Java, the term "checked exception" refers to a category of exceptions that the compiler understands and requires the programmer to acknowledge. You can use a try/catch block within a method where checked exceptions might occur, or you can add the exception to the method's throws clause in its signature.
+62Dtw All exceptions must be handled
+62Dex Java does want you to handle most exceptions, but it does not require you to deal with runtime (unchecked) exceptions. If they occur and do not encounter a try/catch block, they will halt your application and typically be displayed in the terminal where you started the application.
+
+63-tx Where do you place any clean up code that you always want to run after using some resources in a ++try++ block?
+63-se (Select one)
+63Atc Inside a finally clause
+63Aex The finally clause will run at the end of a try block regardless of what happens. If there are no problems, the code in the finally clause runs. If there is an exception and a catch block handles it, finally still runs. If an exception occurs that is not handled, the finally clause still runs before control is transferred back to the calling method.
+63Btw As an argument to assert()
+63Bex Assertions are good for validating your assumptions about your code, but they are not used for resource cleanup.
+63Ctw In a static method
+63Cex Static methods provide access to code without needing an instance of a class. They don't have any special ability to clean up.
+63Dtw In the logging.properties file
+63Dex The logging.properties file configures your logging system. You might log some information while cleaning up, but the properties file itself does not do any of that work.
+
+64-tx Do assertions have much of a performance penalty when they are disabled?
+64-se (Select the best match)
+64Atw Yes, they should be used sparingly
+64Aex Explanation A
+64Btw Yes, but their benefits typically outweight this penalty
+64Bex Explanation B
+64Ctc No, they are designed to have a minimal impact when disabled
+64Cex Assertions are meant to be used more during development or debugging. When you turn them off, they are skipped. Even in a production application, though, you might leave assertions in your code. If a user reports a problem, assertions could be enabled temporarily to allow your user to collect any output and help you find the cause.
+64Dtw No, they are only executed after an exception occurs
+64Dex If assetions are enabled, they are executed exactly where you placed them in your code.
+
+65-tx When you include logging messages in your application, which level might you use to let users know that something went wrong?
+65-se (Select the best match)
+65Atw INFO
+65Aex This logging level is typically used for useful, but not critical details. These details don't have to relate to problems and are often hidden in production applications.
+65Btc WARNING
+65Bex Probably. :) The WARNING level if what "went wrong" is something you can recover from and keep the application running. If you don't have good recovery options and the program will be terminated, you would probably use the SEVERE level.
+65Ctw FINEST
+65Cex The FINEST level is typically reserved for the lowest level of debugging statements (sometimes programmers talk about this level as using "trace" statements that track every step of a chunk of code).
+65Dtw SEVERE
+65Dex But we definitely want to admit that this is a viable option for truly critical problems. Even in production, SEVERE log messages are often enabled and allow a standard way to leave behind information that might help in fixing the underlying cause.
+
+66-tx If you needed to send log messages for just one of your applications to another system over the network, how might you configure the Logging API?
+66-se (Select the best match)
+66Atw Pass details to the assert() method
+66Aex Assertions have no effect on logging messages or where they are sent.
+66Btw Create a custom logging class
+66Bex While you certainly could create a custom logger for your application and have it report to a network server, this bespoke approach would require a lot of effort and not translate for use in other situations.
+66Ctw Update the jre/lib/logging.properties under your JDK installation folder
+66Cex This option would certainly work for the intended application but it would also affect every other application you run as well.
+66Dtw Create a custom properties file and give it as a command-line argument
+66Dex For a single application, you could create a specific properties file that you "add" at runtime using a command-line argument: -Djava.util.logging.config.file=myfile.properties. If you have a logging configuration that works for all the applications you run, you can put your configuration in the global jre/lib/logging.properties file under your JDK installation folder.
+
+###
+# Chapter 7
+###
+70-ti Collections and Generics
+70-in Computers are really good at manipulating data. Collections in Java are a versatile, efficient way to store that data. Generics make that storage safer and the code for getting data into and out of that storage easier to maintain.
+
+71-tx If you want to store a contact list with names and phone numbers, which kind of collection would work best?
+71-se (Select one)
+71Atc Map
+71Aex A Map would do the trick. The keys could be simple strings containing the contact's name and the values could be a simple (though wrapped) long number. Or you could create a Person class and a PhoneNumber class and the map could use your custom classes.
+71Btw List
+71Bex While a List could certainly be used to store all of your contacts, you would either need two lists (one for the contact names, one for the phone numbers) or you would need a custom class that contained the name and number. But lists allow duplicates and finding a particular contact would be tedious.
+71Ctw Set
+71Cex Sets do not store duplicates so they might seem like a reasonable possibility, but sets have no easy way to retrieve a particular entry.
+71Dtw Queue
+71Dex Queues have many interesting features, but we don't typically call our friends in the order they were added to our address book. :)
+
+72-tx What method do you use to get an iterator for the items in a Set?
+72-se (Select one)
+72Atw getIterator()
+72Aex While many methods in Java classes use the "get" and "set" prefixes, there is no such method in the classes of the collections framework.
+72Btw getSet()
+72Bex This method is made up and thus not part of the collections framework, but it is fun to say. :)
+72Ctc iterator()
+72Cex The imaginatively named iterator() method from the Collection interface will return the correct iterator.
+72Dtw next()
+72Dex Once you have an iterator, the next() method can help you with the actual iterating. However, next() is not part of the Set class and does not return an iterator. (Unless, of course, you were iterating over a set of iterators!)
+
+73-tx How can you turn a List into an array?
+73-se (Select the best match)
+73Atw iterator()
+73Aex An iterator will go through the entire list, but it doesn't do anything to the list on its own. You would have to augment the iterator with your own code to produce an array.
+73Btc List.toArray()
+73Bex You can use the toArray() method to turn a List into either an array of type Object or an array of the list's parameterized type.
+73Ctw System.out.print()
+73Cex You can print a List, but that only shows the list on your terminal.
+73Dtw You do it manually by creating an empty array and iterating over the List
+73Dex While this would technically work, this approach leaves more room for small mistakes.
+
+74-tx How can you turn an array into a List?
+74-se (Select the best match)
+74Atw You have to manually copy each element from the array to a new List
+74Aex This would work, but it's tedious and error prone. The collections framework has better options available.
+74Btw Use a List constructor to add all of the elements of the array
+74Bex The List class does have several constructors that create and populate lists, but none of them accept an array as an argument.
+74Ctw Arrays and Lists are the same thing, there's nothing to convert
+74Cex While this is true in some languages, in Java, arrays and implementations of the List class are distinct. The collections framework provides a number of ways to convert between the two.
+74Dtc Use Arrays.asList()
+74Dex The Arrays helper class includes the handy asList() method that accepts an array and returns a parameterized list of the same type.
+
+75-tx What interface should you implement to sort a list using the Collections.sort() method?
+75-se (Select one)
+75Atc Comparable
+75Aex While there are many ways to sort collections, a list of Comparable objects (meaning objects whose class implements the Comparable interface) can use the standard sort() method provided by the Collections helper class.
+75Btw Sortable
+75Bex This sure seems like a reasonable interface to implement, but it is not actually a real interface in the collections framework.
+75Ctw Runnable
+75Cex This interface allows you to right code for multithreaded applications. It doesn't play a role in sorting or comparing objects.
+75Dtw MouseMotionListener
+75Dex This interface allows us to handle mouse movements like we did with the HelloComponent in Chapter 2. It does not paly a role in sorting or comparing objects.
+
+###
+# Chapter 8
+###
+80-ti Text and Core Utilities
+80-in We've seen a lot of Java's structure and mechanisms like loops, branching, and try/catch statements for managing the flow of control. This chapter dives into the parts of Java that help you store and manipulate data. The String class holds the ubiquitous text used throughout an application. The java.util package contains several classes for doing all sorts of useful tasks like performing advanced math, managing dates and times, and converting between data types. And regular expressions are a powerful way to parse and edit a wide variety of alphanumeric content.
+
+81-tx Which class contains the constant for pi? Do you need to import that class to use pi?
+81-se (Select one)
+81Atw java.math.BigDecimal, No--it is automatically available
+81Aex While you could certainly load a very nice, high-precision version of pi into a BigDecimal object, there are no predefined constants available in this class. And as part of the java.math package, it would need to be imported.
+81Btw java.util.Math, Yes--but you typically import java.util.*
+81Bex The java.util package has many useful classes and often is imported as a whole package, but it does not contain a Math class.
+81Ctc java.lang.Math, No--it is automatically available
+81Cex The java.lang.Math class contains the constant PI. All of the classes in the java.lang package are imported by default; no explicit import is required to use them.
+81Dtw javax.swing.SwingConstants, Yes--it must be imported
+81Dex The constants in the javax.swing package help with user interface code, they do not contain mathematical constants like pi or e. And any class in the javax.swing package would need to be imported.
+
+82-tx Which package contains newer, better replacements for the original java.util.Date class?
+82-se (Select one)
+82Atc java.time
+82Aex The java.time package added in Java 8 contains a wide variety of quality classes for handling dates, times, timestamps (or "instants" consisting of both a date and a time), and time spans or durations.
+82Btw java.util
+82Bex The java.util package does contain many useful classes, but it still relies on the deprecated Date class for date and time management.
+82Ctw java.awt
+82Cex This package contains classes for viewing and interacting with graphical elements. You could use some of the classes in this package to display a date or a time, but nothing here would help manipulate or compare dates.
+82Dtw java.lang
+82Dex The java.lang package continues to store all of the core classes that no Java application can do without. However it does not have any specific classes to help with dates or times.
+
+83-tx Which class do you use to format a date for user-friendly output?
+83-se (Select one)
+83Atw java.time.Formatter
+83Aex The java.time packages has many utility classes for working with dates and times, but it does not have any classes for formatting output.
+83Btc java.text.DateFormat
+83Bex The DateFormat class in the java.text package has a marvelously flexible (if occasionally opaque) formatting engine for rendering both dates and times.
+83Ctw java.lang.String
+83Cex You can manually format dates and build up a user-friendly string, but the String class itself does not include any formatters.
+83Dtw java.util.Date
+83Dex The Date class does have some formatting options, but all of those methods are deprecated and should not be used.
+
+84-tx What symbol do you use in a regular expression to help match the words "yes" and "yup"?
+84-se (Select one)
+84Atw && (double ampersand)
+84Aex The "and" operator can be used to construct complex character classes ([a-z&&[^aeiou]] matches consonants, for example) but it cannot guarantee the letters of that character class show up in a given order.
+84Btw \ (back slash)
+84Bex The back slash character is an "escape" character that is used to prefix other characters marking them as special. (Think of the newline sequence: "\" followed by "n".) It would not help with matching a choice of words.
+84Ctw * (asterisk)
+84Cex In regular expressions, the asterisk indicates a part of the expression can match repeated instances of that part. It could help if we wanted to match a series of "yes" words concatenated together ("yesyesyesyes") but isn't a good choice for the requested match.
+84Dtc | (vertical pipe)
+84Dex You can use the alternation operator, | (vertical pipe), to create an expression such as yes|yup for use as a pattern.
+
+85-tx How would you convert the string "42" into the integer 42?
+85-se (Select one)
+85Atw Collections.toArray()
+85Aex This method could convert a list of strings (or numbers) into a comparable array, but it would not convert from one type of element to a different type.
+85Btw Path.of()
+85Bex This helper in the java.nio package (more on that in Chapter 10) helps you build a path to a file in your filesystem. It does not conver types.
+85Ctc Integer.parseInt()
+85Cex The various numeric wrappers all have string conversion methods. For an integer like 42, the Integer.parseInt() method would work. The wrapper classes are all part of the java.lang package.
+85Dtw String.charAt()
+85Dex You could use this method to start separating the individual characters in the string and manually convert them to a numeric value, but the method itself won't do the conversion.
+
+86-tx How would you compare two strings to see if they match, ignoring any capitalization, such as "yes" and "YES"?
+86-se (Select one)
+86Atc String.equalsIgnoreCase()
+86Aex The String class has two main comparison methods: equals() and equalsIgnoreCase(). The latter would ignore capitalization, as its name suggests.
+86Btw Comparable.compareTo()
+86Bex The compareTo() method specified in the Comparable interface is certainly used to compare two objects, but it does not dictate how the comparison is accomplished.
+86Ctw Object.toString()
+86Cex Coming from the Object class, the toString() method is available on every Java object, but simply returns a text representation of the object.
+86Dtw Math.abs()
+86Dex The Math.abs() method would help you compare two numbers and ignore their sign, but it cannot compare two String objects.
+
+87-tx Which operator allows for simple string concatenation?
+87-se (Select one)
+87Atw & (ampersand)
+87Aex While we often pronounce this symbol as "and" making it seem like a possible choice, the single ampersand operator is a boolean logic operator not meant for use with strings.
+87Btc + (plus)
+87Bex Java does not generally support operator overloading, but the plus sign (+) performs addition when used with numeric base types, and concatenation when used with String objects. If you use + to "add" a string and a number, the result will be a string. (So 7 + "is lucky" would result in the string "7is lucky". Notice that concatenation does not insert any white space. If you are assembling a typical sentence, you must add your own spacing between the parts.)
+87Ctw | (vertical pipe)
+87Cex Similar to the single ampersand, the vertical pipe operator is used in boolean expressions and is not meant to work with strings.
+87Dtw . (dot)
+87Dex Many languages do use the period (. or dot) as a concatenation operator, Java does not. The dot in Java is used in package names and to separate classes or instances from members. 
+
+
