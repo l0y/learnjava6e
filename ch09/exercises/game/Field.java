@@ -1,4 +1,4 @@
-//package ch07.solutions.game;
+//package ch09.exercises.game;
 
 import javax.swing.*;
 import java.awt.Color;
@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class Field extends JComponent {
   public static final float GRAVITY = 9.8f;  // feet per second per second
-  public static final int STEP = 40;   // duration of an animation frame in milliseconds
+  public static final int STEP = 30;   // duration of an animation frame in milliseconds
   public static final int APPLE_SIZE_IN_PIXELS = 30;
   public static final int TREE_WIDTH_IN_PIXELS = 60;
   public static final int TREE_HEIGHT_IN_PIXELS = 2 * TREE_WIDTH_IN_PIXELS;
@@ -26,22 +26,22 @@ public class Field extends JComponent {
   List<Tree> trees = new ArrayList<>();
   List<Hedge> hedges = new ArrayList<>();
   List<Apple> apples = new ArrayList<>();
-
-  // For animation
-  Thread animationThread;             // Keep a ref in case we need to pause or stop
-  public static final int STEP = 40;  // animation frame duration in millis
-  boolean animating = false;          // are there apples to animate? 
+  boolean animating = false;
+  Thread animationThread;
 
   protected void paintComponent(Graphics g) {
     g.setColor(fieldColor);
     g.fillRect(0,0, getWidth(), getHeight());
     for (Tree t : trees) {
-      t.draw(g);
+        t.draw(g);
     }
     for (Hedge h : hedges) {
-      h.draw(g);
+        h.draw(g);
     }
     physicist.draw(g);
+    for (Apple a : apples) {
+      a.draw(g);
+    }
   }
 
   public void setPlayer(Physicist p) {
@@ -58,11 +58,6 @@ public class Field extends JComponent {
     Hedge hedge = new Hedge();
     hedge.setPosition(x,y);
     hedges.add(hedge);
-  }
-
-  void startAnimation() {
-    animationThread = new Thread(new Animator());
-    animationThread.start();
   }
 
   /**
@@ -98,13 +93,14 @@ public class Field extends JComponent {
     }
     if (apples.size() <= 0) {
       animating = false;
-      if (animationTimer != null && animationTimer.isRunning()) {
-        animationTimer.stop();
-      }
     }
   }
 
-  // A simple inner class with our run() method
+  void startAnimation() {
+    animationThread = new Thread(new Animator());
+    animationThread.start();
+  }
+
   class Animator implements Runnable {
     public void run() {
       // "animating" is a global variable that allows us
@@ -129,4 +125,5 @@ public class Field extends JComponent {
       }
     }
   }
+
 }

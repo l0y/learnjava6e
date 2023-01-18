@@ -19,14 +19,18 @@ public class Apple implements GamePiece {
     int centerX, centerY;
     Physicist myPhysicist;
 
-    // Some helpers for optimizing the draw() method that can be called many, many times
+    // Some helpers for optimizing the draw() method which can be called many, many times
     int x, y;
     int scaledLength;
+
+    // In game play, apples can be thrown so track their velocities
+    long lastStep;
+    float velocityX, velocityY;
 
     // Boundary helper for optimizing collision detection with physicists and trees
     Rectangle boundingBox;
 
-    // If we bumped into something, keep a reference to that thing around for cleanup and removal
+    // If we bumped into something, keep a reference around for cleanup and removal
     GamePiece collided;
 
     /**
@@ -117,42 +121,63 @@ public class Apple implements GamePiece {
         g.fillOval(x, y, scaledLength, scaledLength);
     }
 
-    @Override
-    public boolean isTouching(GamePiece otherPiece) {
-        if (this == otherPiece || myPhysicist == otherPiece || collided != null) {
-            // By definition we don't collide with ourselves, our physicist, or with more than one other piece
-            return false;
-        }
-        if (otherPiece instanceof Apple) {
-            // The other piece is an apple, so we can do a simple distance calculation using
-            // the diameters of both apples.
-            Apple otherApple = (Apple) otherPiece;
-            int v = this.y - otherPiece.getPositionY(); // vertical difference
-            int h = this.x - otherPiece.getPositionX(); // horizontal difference
-            double distance = Math.sqrt(v * v + h * h);
+  public void toss(float angle, float velocity) {
+    lastStep = System.currentTimeMillis();
+    double radians = angle / 180 * Math.PI;
+    velocityX = (float)(velocity * Math.cos(radians) / mass);
+    // Start with negative y velocity since "up" means smaller values of y
+    velocityY = (float)(-velocity * Math.sin(radians) / mass);
+  }
 
-            double myRadius = diameter * Field.APPLE_SIZE_IN_PIXELS / 2;
-            double otherRadius = otherApple.getDiameter() * Field.APPLE_SIZE_IN_PIXELS / 2;
-            if (distance < (myRadius + otherRadius)) {
-                // Since apples track collisions, we'll update the other apple to keep everyone in sync
-                setCollided(otherPiece);
-                otherApple.setCollided(this);
-                return true;
-            }
-            return false;
-        }
-        if (GameUtilities.doBoxesIntersect(boundingBox, otherPiece.getBoundingBox())) {
-            setCollided(otherPiece);
-            return true;
-        }
-        return false;
+  public void step() {
+    // Make sure we're moving at all using our lastStep tracker as a sentinel
+    if (lastStep > 0) {
+      // let's apply our gravity
+      long now = System.currentTimeMillis();
+      float slice = (now - lastStep) / 1000.0f;
+      velocityY = velocityY + (slice * Field.GRAVITY);
+      int newX = (int)(centerX + velocityX);
+      int newY = (int)(centerY + velocityY);
+      setPosition(newX, newY);
     }
+  }
 
-    public GamePiece getCollidedPiece() {
-        return collided;
+  @Override
+  public boolean isTouching(GamePiece otherPiece) {
+    if (this == otherPiece || myPhysicist == otherPiece || collided != null) {
+      // By definition we don't collide with ourselves, our physicist, or with more than one other piece
+      return false;
     }
+    if (otherPiece instanceof Apple) {
+      // The other piece is an apple, so we can do a simple distance calculation using
+      // the diameters of both apples.
+      Apple otherApple = (Apple) otherPiece;
+      int v = this.y - otherPiece.getPositionY(); // vertical difference
+      int h = this.x - otherPiece.getPositionX(); // horizontal difference
+      double distance = Math.sqrt(v * v + h * h);
 
-    public void setCollided(GamePiece otherPiece) {
-        this.collided = otherPiece;
+      double myRadius = diameter * Field.APPLE_SIZE_IN_PIXELS / 2;
+      double otherRadius = otherApple.getDiameter() * Field.APPLE_SIZE_IN_PIXELS / 2;
+      if (distance < (myRadius + otherRadius)) {
+        // Since apples track collisions, we'll update the other apple to keep everyone in sync
+        setCollided(otherApple);
+        otherApple.setCollided(this);
+        return true;
+      }
+      return false;
     }
+    if (GameUtilities.doBoxesIntersect(boundingBox, otherPiece.getBoundingBox())) {
+      setCollided(otherPiece);
+      return true;
+    }
+    return false;
+  }
+
+  public GamePiece getCollidedPiece() {
+    return collided;
+  }
+
+  public void setCollided(GamePiece otherPiece) {
+    this.collided = otherPiece;
+  }
 }
