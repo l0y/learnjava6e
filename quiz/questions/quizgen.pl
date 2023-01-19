@@ -19,7 +19,7 @@ for ($q = 1; $q <= $quCount; $q++) {
   printf "%X%X-tx Question %d text\n", $chNum, $q, $q;
   printf "%X%X-se (Select one)\n", $chNum, $q;
   for ($a = 65; $a <= 68; $a++) {
-    printf "%X%X%ctc Answer %c\n", $chNum, $q, $a, $a;
+    printf "%X%X%ctw Answer %c\n", $chNum, $q, $a, $a;
     printf "%X%X%cex Explanation %c\n", $chNum, $q, $a, $a;
   }
   printf "\n";
