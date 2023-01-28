@@ -63,7 +63,7 @@ public class HelloChapter8 extends JFrame {
           // Too many args; print and error and exit
           System.err.println("Too many arguments. Max is two: name and location.");
           System.exit(0);
-	}
+	      }
         HelloChapter8 demo = new HelloChapter8(msg, x, y);
         demo.setVisible(true);
     }

@@ -1,5 +1,6 @@
 # Compiled class file
-*.class
+# Don't skip as we occasionally provide pre-compiled classes for readers
+#*.class
 
 # Log file
 *.log
