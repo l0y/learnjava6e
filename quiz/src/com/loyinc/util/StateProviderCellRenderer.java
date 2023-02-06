@@ -35,7 +35,7 @@ public class StateProviderCellRenderer extends JLabel implements TreeCellRendere
       //InputStream is = StateProviderCellRenderer.class.getResourceAsStream(iconPath);
       //ImageIcon icon = new ImageIcon(ImageIO.read(is));
       URL iconUrl = ClassLoader.getSystemClassLoader().getResource(iconPath);
-      System.out.println("Attempting to load icon from " + iconUrl);
+      //System.out.println("Attempting to load icon from " + iconUrl);
       String iconName = iconPath.substring(iconPath.lastIndexOf('/') + 1, iconPath.lastIndexOf('.'));
       addIcon(iconName, new ImageIcon(iconUrl));
     } catch (Exception e) {

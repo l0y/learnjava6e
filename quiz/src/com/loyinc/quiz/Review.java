@@ -9,12 +9,12 @@ public class Review {
   // Hard-coded options for now. Could certainly move these to command-line
   // arguments if more quizzes get built.
   // Production, use the bundled quiz content
-  String buildMode = Quizzes.JAR;
-  String quizFile = "res/quiz-data.txt";
+  //String buildMode = Quizzes.JAR;
+  //String quizFile = "res/quiz-data.txt";
 
   // Late-stage development, use a file from the local filesystem
-  //String buildMode = Quizzes.FILE;
-  //String quizFile = "/home/marc/pCloudDrive/lj6quiz/quiz/quiz-data.txt";
+  String buildMode = Quizzes.FILE;
+  String quizFile = "/Users/marc/work/books/examples/learnjava6e/quiz/questions/quiz-data.txt";
 
   // Early development, use mock data
   //String buildMode = Quizzes.MOCKUP;

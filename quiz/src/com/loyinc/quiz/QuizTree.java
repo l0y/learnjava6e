@@ -38,6 +38,14 @@ public class QuizTree extends JTree {
       spcr.addIcon((prefix + Chapter.expandedNames[i] + suffix));
     }
     this.setCellRenderer(spcr);
+    // And last but not least, tailor for particular operating systems
+    // Write once, debug everywhere ;)
+    if (Config.isMacOS()) {
+      System.out.println("Tweaing for macs...");
+      this.setRowHeight(24);
+    } else {
+      System.out.println("Not a mac");
+    }
   }
 
   public Insets getInsets() {
