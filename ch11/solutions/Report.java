@@ -1,4 +1,4 @@
-//package ch11.examples;
+//package ch11.solutions;
 
 import java.util.*;
 
@@ -21,11 +21,21 @@ public class Report {
     System.out.println("Annual bugdet is " + b);
   }
 
+  public void publishAverage() {
+    OptionalDouble avg = employees.stream().mapToInt(e -> e.getSalary()).average();
+    if (avg.isPresent()) {
+      System.out.println("Average salary is " + avg.getAsDouble());
+    } else {
+      System.out.println("No salaries were available.");
+    }
+  }
+
   public static void main(String args[]) {
     Report r = new Report();
     r.buildEmployeeList();
     r.publishNames();
     r.publishBudget();
+    r.publishAverage();
   }
 }
 
