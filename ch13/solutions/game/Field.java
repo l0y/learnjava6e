@@ -1,4 +1,4 @@
-package game;
+package ch13.solutions.game;
 
 import java.awt.Color;
 import java.awt.Graphics;

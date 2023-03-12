@@ -211,7 +211,7 @@ public class AppleToss extends JFrame {
     for (int i = field.hedges.size(); i < 6; i++) {
       Hedge h = new Hedge();
       h.setPosition(goodX(), goodY());
-      // Hedges are like trees, they should obscure our player
+      // Hedges are like trees, they shouldn't obscure our player
       while (player1.isTouching(h)) {
         // We do intersect this hedge, so let's try again
         h.setPosition(goodX(), goodY());

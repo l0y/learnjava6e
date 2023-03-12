@@ -1,4 +1,4 @@
-package game;
+package ch13.examples.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
