@@ -9,7 +9,7 @@ public class FDServer2 {
   static int fdPort = 3283; // D-A-T-E on a phonepad :)
   static DateTimeFormatter shortish = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm a");
   public static void serveDateAndTime() {
-    for (;;) { // this is sometimes called the "forever" loop
+    for (;;) { // this is sometimes called a "forever" loop
       System.out.println("Waiting ...");
       try (ServerSocket listener = new ServerSocket(fdPort)) {
         Socket fdClient = listener.accept();
