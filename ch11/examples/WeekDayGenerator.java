@@ -1,4 +1,4 @@
-//package ch11.examples;
+package ch11.examples;
 
 import java.util.Random;
 import java.util.stream.Stream;

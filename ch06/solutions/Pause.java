@@ -1,4 +1,4 @@
-//package ch06.solutions;
+package ch06.solutions;
 
 public class Pause {
   public static void main(String args[]) {

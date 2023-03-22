@@ -1,4 +1,4 @@
-//package ch06.exercises;
+package ch06.exercises;
 
 public class Euclid2 {
   public static void main(String args[]) {

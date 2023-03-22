@@ -1,4 +1,4 @@
-//package ch10.examples
+package ch10.examples;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

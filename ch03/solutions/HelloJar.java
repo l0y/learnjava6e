@@ -1,4 +1,4 @@
-//package ch03.solutions;
+package ch03.solutions;
 
 import java.awt.*;
 import java.awt.event.*;

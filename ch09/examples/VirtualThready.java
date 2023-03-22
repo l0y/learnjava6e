@@ -1,3 +1,5 @@
+package ch09.examples;
+
 public class VirtualThready {
   public static void main( String args [] ) throws InterruptedException {
     Thread t1 = Thread.startVirtualThread(new ShowThread("VFoo"));

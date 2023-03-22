@@ -1,4 +1,4 @@
-//package ch09.exercises;
+package ch09.exercises;
 
 import java.awt.*;
 import javax.swing.*;

@@ -1,4 +1,4 @@
-//package ch07.examples;
+package ch07.examples;
 
 import java.util.*;
 

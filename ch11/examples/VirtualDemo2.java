@@ -1,4 +1,4 @@
-//package ch11.examples;
+package ch11.examples;
 
 public class VirtualDemo2 {
   public static void main(String args[]) throws Exception {

@@ -1,4 +1,4 @@
-//package ch06.solutions;
+package ch06.solutions;
 
 import java.util.logging.Logger;
 

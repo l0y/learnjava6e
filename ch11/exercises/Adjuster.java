@@ -1,4 +1,4 @@
-//package ch11.exercises;
+package ch11.exercises;
 
 import java.util.function.DoubleUnaryOperator;
 

@@ -1,4 +1,4 @@
-//package ch04.solutions;
+package ch04.solutions;
 
 /**
  * A basic implementation of Euclid's greatest common denominator

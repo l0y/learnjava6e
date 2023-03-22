@@ -1,4 +1,4 @@
-//package ch04.solutions;
+package ch04.solutions;
 
 public class SimpleTriangle {
   public static void main(String args[]) {

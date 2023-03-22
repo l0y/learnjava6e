@@ -1,4 +1,4 @@
-//package ch10.exercises;
+package ch10.exercises;
 
 import java.io.*;
 

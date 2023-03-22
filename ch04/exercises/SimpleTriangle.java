@@ -1,4 +1,4 @@
-//package ch04.exercises;
+package ch04.exercises;
 
 // Exercise 2. Print out the contents of our
 // "triangular" array.

@@ -1,4 +1,4 @@
-//package ch11.exercises;
+package ch11.exercises;
 
 public class PaidEmployee {
   private int id;

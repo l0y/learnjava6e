@@ -1,4 +1,4 @@
-//package ch09.solutions;
+package ch09.solutions;
 
 import java.awt.*;
 import javax.swing.*;

@@ -1,4 +1,4 @@
-//package ch06.examples;
+package ch06.examples;
 
 import java.util.logging.*;
 

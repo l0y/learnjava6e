@@ -1,4 +1,4 @@
-//package ch05.solutions;
+package ch05.solutions;
 
 import java.util.*;
 

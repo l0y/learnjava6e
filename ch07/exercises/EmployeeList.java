@@ -1,4 +1,4 @@
-//package ch07.exercises;
+package ch07.exercises;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-//package ch09.examples;
+package ch09.examples;
 
 /**
  * Another variation on our URL processing example.

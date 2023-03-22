@@ -1,4 +1,4 @@
-//package ch07.solutions;
+package ch07.solutions;
 
 import java.util.*;
 

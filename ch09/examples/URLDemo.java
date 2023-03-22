@@ -1,4 +1,4 @@
-//package ch09.examples;
+package ch09.examples;
 
 /**
  * Manage multiple producers and consumers to demonstrate how

@@ -1,4 +1,4 @@
-//package ch07.solutions;
+package ch07.solutions;
 
 public class Employee2 implements Comparable<Employee2> {
   private Integer id;

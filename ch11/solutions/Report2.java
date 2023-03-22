@@ -1,4 +1,4 @@
-//package ch11.solutions;
+package ch11.solutions;
 
 import java.util.*;
 import java.util.stream.Collectors;

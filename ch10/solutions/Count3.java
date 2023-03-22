@@ -1,4 +1,4 @@
-//package ch10.solutions;
+package ch10.solutions;
 
 import java.util.List;
 import java.io.IOException;

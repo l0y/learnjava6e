@@ -1,4 +1,4 @@
-//package ch08.examples;
+package ch08.examples;
 
 import java.util.regex.Pattern;
 

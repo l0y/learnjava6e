@@ -1,4 +1,4 @@
-//package ch05.examples;
+package ch05.examples;
 
 import java.awt.*;
 import java.awt.event.*;

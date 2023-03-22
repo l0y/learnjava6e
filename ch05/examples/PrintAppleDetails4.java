@@ -1,4 +1,4 @@
-//package ch05.examples;
+package ch05.examples;
 
 /**
  * One final iteration of manipulating and printing apple details.

@@ -1,4 +1,4 @@
-//package ch09.examples;
+package ch09.examples;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 

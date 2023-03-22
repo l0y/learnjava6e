@@ -1,4 +1,4 @@
-//package ch02.examples;
+package ch02.examples;
 
 import javax.swing.*;
 

@@ -1,4 +1,4 @@
-//package ch04.exercises;
+package ch04.exercises;
 
 /**
  * A basic implementation of Euclid's greatest common denominator

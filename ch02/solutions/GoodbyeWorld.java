@@ -1,4 +1,4 @@
-//package ch02.solutions;
+package ch02.solutions;
 
 /**
  * A simple variation on the commandline version
