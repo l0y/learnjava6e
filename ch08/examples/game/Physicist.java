@@ -1,4 +1,4 @@
-//package ch08.examples.game;
+package ch08.examples.game;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-//package ch05.examples.game;
+package ch05.examples.game;
 
 import java.awt.*;
 

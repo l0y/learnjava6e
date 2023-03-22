@@ -1,4 +1,4 @@
-//package ch09.solutions.game;
+package ch09.solutions.game;
 
 import javax.swing.*;
 import java.awt.Color;

@@ -1,4 +1,4 @@
-//package ch05.exercises.game;
+package ch05.exercises.game;
 
 import javax.swing.*;
 

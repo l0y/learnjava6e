@@ -1,4 +1,4 @@
-//package ch07.solutions.game;
+package ch07.solutions.game;
 
 // collision detection between a circle and a rectangle
 // https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection

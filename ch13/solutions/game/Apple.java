@@ -1,3 +1,5 @@
+package ch13.solutions.game;
+
 /**
  * Apple
  *
@@ -5,7 +7,6 @@
  * We keep the size and weight details and provide a few simple methods for lobbing. We
  * also provide animation helpers for use with the PlayingField class.
  */
-package ch13.solutions.game;
 
 import java.awt.*;
 

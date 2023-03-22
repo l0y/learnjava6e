@@ -1,4 +1,4 @@
-//package ch08.examples.game;
+package ch08.examples.game;
 
 // collision detection between a circle and a rectangle
 // https://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection

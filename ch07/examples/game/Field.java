@@ -1,4 +1,4 @@
-//package ch07.examples.game;
+package ch07.examples.game;
 
 import javax.swing.*;
 import java.awt.Color;

@@ -1,4 +1,4 @@
-//package ch05.solutions.game;
+package ch05.solutions.game;
 
 import javax.swing.*;
 import java.awt.*;

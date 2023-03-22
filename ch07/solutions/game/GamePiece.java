@@ -1,4 +1,4 @@
-//package ch07.solutions.game;
+package ch07.solutions.game;
 
 import java.awt.*;
 

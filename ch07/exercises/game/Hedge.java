@@ -1,4 +1,4 @@
-//package ch05.solutions.game;
+package ch07.exercises.game;
 
 import java.awt.*;
 
