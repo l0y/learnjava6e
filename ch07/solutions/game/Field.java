@@ -6,12 +6,11 @@ import java.awt.Graphics;
 import java.util.*;
 
 /**
- * The playing field for our game. Now we can setup some constants for
+ * The playing field for our game. Now we can set up some constants for
  * other game classes to use and create member variables for our player and some trees.
  */
 public class Field extends JComponent {
   public static final float GRAVITY = 9.8f;  // feet per second per second
-  public static final int STEP = 40;   // duration of an animation frame in milliseconds
   public static final int APPLE_SIZE_IN_PIXELS = 30;
   public static final int TREE_WIDTH_IN_PIXELS = 60;
   public static final int TREE_HEIGHT_IN_PIXELS = 2 * TREE_WIDTH_IN_PIXELS;
@@ -98,9 +97,6 @@ public class Field extends JComponent {
     }
     if (apples.size() <= 0) {
       animating = false;
-      if (animationTimer != null && animationTimer.isRunning()) {
-        animationTimer.stop();
-      }
     }
   }
 

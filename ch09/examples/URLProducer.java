@@ -44,7 +44,7 @@ public class URLProducer implements Runnable {
   public void run() {
     for (int i = 1; i <= urlCount; i++) {
       String url = "https://some.url/at/path/" + i;
-      queue.add(producerID + " " + url);
+      queue.addURL(producerID + " " + url);
       System.out.println(producerID + " produced " + url);
       try {
         Thread.sleep(delay.nextInt(500));
