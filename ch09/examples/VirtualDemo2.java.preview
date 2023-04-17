@@ -1,6 +1,6 @@
 package ch09.examples;
 
-public class VirtualDemo {
+public class VirtualDemo2 {
   public static void main(String args[]) throws Exception {
     Runnable runnable = new Runnable() {
       public void run() {

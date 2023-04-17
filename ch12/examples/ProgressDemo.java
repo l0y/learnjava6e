@@ -21,12 +21,9 @@ public class ProgressDemo {
         Thread pretender = new Thread(new ProgressPretender(label));
 
         JButton simpleButton = new JButton("Start");
-        simpleButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                simpleButton.setEnabled(false);
-                pretender.start();
-            }
+        simpleButton.addActionListener(e -> {
+            simpleButton.setEnabled(false);
+            pretender.start();
         });
 
         JLabel checkLabel = new JLabel("Can you still type?");
@@ -57,11 +54,7 @@ class ProgressPretender implements Runnable {
 
     public void run() {
         while (progress <= 100) {
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    label.setText(progress + "%");
-                }
-            });
+            SwingUtilities.invokeLater(() -> label.setText(progress + "%"));
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ie) {
