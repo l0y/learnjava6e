@@ -107,7 +107,7 @@ public class Multiplayer {
 
             while (keepPlaying) {
               try {
-                if (gameField.trees.size() > 0) {
+                if ((gameField.trees.size() > 0) || (gameField.hedges.size() > 0)) {
                   writer.print("SCORE ");
                 } else {
                   writer.print("END ");
@@ -318,7 +318,7 @@ public class Multiplayer {
               return;
             } else {
               // If we're not disconnecting, reply with our current score
-              if (gameField.trees.size() > 0) {
+              if ((gameField.trees.size() > 0) || (gameField.hedges.size() > 0)) {
                 writer.print("SCORE ");
               } else {
                 keepPlaying = false;

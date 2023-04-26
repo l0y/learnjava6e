@@ -18,7 +18,12 @@ import javax.swing.*;
 public class Post extends JPanel implements ActionListener {
   JTextField nameField;
   JPasswordField passwordField;
-  String postURL;
+
+  // The Postman app is a fantastic tool for testing web service APIs.
+  // https://www.postman.com/
+  // Postman also runs a very handy (free!) echo service that can show
+  // you the content and metadata of basic web requests.
+  String postURL = "https://postman-echo.com/post";
 
   GridBagConstraints constraints = new GridBagConstraints(  );
   
@@ -27,10 +32,7 @@ public class Post extends JPanel implements ActionListener {
     add ( component, constraints );
   }
 
-  public Post( String postURL ) {
-	  
-    this.postURL = postURL;  
-	  
+  public Post() {
     setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 5));
     JButton postButton = new JButton("Post");
     postButton.addActionListener( this );
@@ -84,10 +86,15 @@ public class Post extends JPanel implements ActionListener {
         System.out.println("Bad post...");
         return;
       }
-      // Hooray! Go ahead and read the results...
-      //InputStream in = urlcon.getInputStream();
-      // ...
-
+      // Hooray! Go ahead and read the results
+      InputStream is = urlcon.getInputStream();
+      InputStreamReader isr = new InputStreamReader(is);
+      BufferedReader br = new BufferedReader(isr);
+      String line;
+      while ((line = br.readLine()) != null) {
+        System.out.println(line);
+      }
+      br.close();
     } catch (MalformedURLException e) {
       System.out.println(e);     // bad postURL
     } catch (IOException e2) {
@@ -96,13 +103,9 @@ public class Post extends JPanel implements ActionListener {
   }
 
   public static void main( String [] args ) {
-    if (args.length != 1) {
-      System.err.println("Must specify URL on command line. Exiting.");
-      System.exit(1);
-    }
     JFrame frame = new JFrame("SimplePost");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.add( new Post(args[0]), "Center" );
+    frame.add( new Post(), "Center" );
     frame.pack();
     frame.setVisible(true);
   }

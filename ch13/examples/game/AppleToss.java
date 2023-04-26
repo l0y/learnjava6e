@@ -136,31 +136,18 @@ public class AppleToss extends JFrame {
         multiplayerHelper = new Multiplayer(field);
 
         JMenuItem startItem = new JMenuItem("Start Server");
-        startItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                multiplayerHelper.startServer();
-            }
-        });
+        startItem.addActionListener(e -> multiplayerHelper.startServer());
         netMenu.add(startItem);
 
         JMenuItem joinItem = new JMenuItem("Join Game...");
-        joinItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String otherServer = JOptionPane.showInputDialog(AppleToss.this, "Enter server name or address:");
-                multiplayerHelper.joinGame(otherServer);
-            }
+        joinItem.addActionListener(e -> {
+          String otherServer = JOptionPane.showInputDialog(AppleToss.this, "Enter server name or address:");
+          multiplayerHelper.joinGame(otherServer);
         });
         netMenu.add(joinItem);
 
         JMenuItem quitItem = new JMenuItem("Disconnect");
-        quitItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                multiplayerHelper.disconnect();
-            }
-        });
+        quitItem.addActionListener(e -> multiplayerHelper.disconnect());
         netMenu.add(quitItem);
 
         // build a JMenuBar for the application

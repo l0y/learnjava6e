@@ -67,7 +67,7 @@
 22Ctw Java does not have a way to run classes. You have to use a browser.
 22Cex Happily this is not the case. Java used to have applets that would execute in a browser, and all modern browsers support JavaScript--which feels kinda like Java--but a browser is not how you run Java code.
 22Dtc The class you specify after the java command must include a main() method.
-22Dex Any executable Java class must have a ++main()++ method defined. The JVM uses this method as the entry point. The name of the class does not play a role in startup.
+22Dex Any executable Java class must have a main() method defined. The JVM uses this method as the entry point. The name of the class does not play a role in startup.
 
 23-tx Can you extend more than one class when creating a new class?
 23-se (Select the best match)
@@ -271,7 +271,7 @@
 52Btw instanceof
 52Bex While the "instanceof" operator sounds plausible, it can only be used for testing whether an existing object is an "instance of" a class; it cannot create a new instance of a class.
 52Ctc new
-52Cex The ++new++ operator instantiates an object from a class and calls the appropriate constructor.
+52Cex The new operator instantiates an object from a class and calls the appropriate constructor.
 52Dtw main
 52Dex Executable Java classes have a main() method, but the name "main" itself is not an operator and has no bearing on the creation of objects.
 
@@ -380,7 +380,7 @@
 62Dtw All exceptions must be handled
 62Dex Java does want you to handle most exceptions, but it does not require you to deal with runtime (unchecked) exceptions. If they occur and do not encounter a try/catch block, they will halt your application and typically be displayed in the terminal where you started the application.
 
-63-tx Where do you place any clean up code that you always want to run after using some resources in a ++try++ block?
+63-tx Where do you place any clean up code that you always want to run after using some resources in a try block?
 63-se (Select one)
 63Atc Inside a finally clause
 63Aex The finally clause will run at the end of a try block regardless of what happens. If there are no problems, the code in the finally clause runs. If there is an exception and a catch block handles it, finally still runs. If an exception occurs that is not handled, the finally clause still runs before control is transferred back to the calling method.
@@ -568,4 +568,444 @@
 87Dtw . (dot)
 87Dex Many languages do use the period (. or dot) as a concatenation operator, Java does not. The dot in Java is used in package names and to separate classes or instances from members. 
 
+###
+# Chapter 9
+###
+90-ti Threads
+90-in Threads play a critical role in any advanced Java application, from desktop applications with graphical interfaces meant for one user, to backend services that handle millions of requests. This chapter introduces the concept of threads in Java along with how to create and synchronize both platform and virtual threads.
+
+91-tx What is a thread?
+91-se (Select one)
+91Atw A very fine strand of material used in sewing and needlework.
+91Aex Very true! But not so (sew?) relevant to Java. :)
+91Btw A thread is an alternate name for anonymous inner classes.
+91Bex While you often supply the task for a thread to execute through an anonymous inner class, they are distinct concepts in Java.
+91Ctw Threads are links found in Javadoc comments before a class or method definition.
+91Cex Links are allowed in Javadoc comments, but they are simply known as links.
+91Dtc A thread represents an independent task in a program that can execute alongside other threads and the application itself.
+91Dex Threads have their own state and can run independently from other threads. Typically you use threads to handle long-running tasks that can be put in the background while more important tasks can continue to do their work.
+
+92-tx What keyword can you add to a method if you want threads to "take turns" when calling it? (Meaning no two threads should be executing the method at the same time to avoid corrupting shared data.)
+92-se (Select one)
+92Atw shared
+92Aex Although it would make sense, the term "shared" is not a keyword in Java.
+92Btc synchronized
+92Bex You can add "synchronized" to the list of modifiers before a method name to indicate that only one thread at a time should use the method.
+92Ctw threaded
+92Cex "Threaded" is certainly descriptive, but it is not a keyword in Java.
+92Dtw volatile
+92Dex The keyword "volatile" modifies variables and is used to keep some data from being persisted.
+
+93-tx What flags allow you to compile a Java program that includes preview feature code?
+93-se (Select one)
+93Atc --enable-preview and either -source or --release
+93Aex When compiling a Java class that relies on a preview feature, you must supply the --enable-preview and either the -source or --release flags to javac.
+93Btw --preview
+93Bex The javac tool does not have a --preview flag.
+93Ctw --version
+93Cex It might be tempting to think that you could specify the version of Java with this flag, it only prints information on the version of javac itself.
+93Dtw --beta
+93Dex Unfortunately this well-named flag does not exist and won't help you compile preview features.
+
+94-tx What flags allow you to run a Java program that includes preview feature code?
+94-se (Select one)
+94Atw -source
+94Aex The -source flag is used for compiling code from a specific version of Java. It does not affect running an application.
+94Btc --enable-preview
+94Bex When running a compile class that includes a preview feature, you only need to supply the --enable-preview flag.
+94Ctw --help
+94Cex While the --help flag might point you in the right direction--it prints out a help message--it won't help execute code with preview features.
+94Dtw --beta
+94Dex Unfortunately this well-named flag does not exist and won't help you run code with preview features.
+
+95-tx How many platform threads can one native thread support?
+95-se (Select one)
+95Atw 1
+95Aex Creating a platform thread using the Thread class with a Runnable target or using something like the java.util.concurrent.ExecutorService requires the operating system to supply a thread as well.
+95Btw 2
+95Bex Two seems manageable, but native threads only support a single platform thread.
+95Ctw 256
+95Cex What a great number! But native threads only support a single platform thread.
+95Dtw Integer.MAX_VALUE
+95Dex Many limits in Java use this value, but native threads only support a single platform thread.
+
+96-tx How many virtual threads can one native thread support?
+96-se (Select the best answer)
+96Atw None, virtual threads are not related
+96Aex Virtual threads are still related to native threads.
+96Btw 1
+96Bex Native threads can only support one platform thread, but they can handle many more virtual threads.
+96Ctw 2
+96Cex Sort of, in that a native thread can certainly handle two virtual threads at a time, but a native thread can also handle more.
+96Dtc "Many"
+96Dex There is no fixed ratio of virtual-to-native, but the key insight with virtual threads is that the number of virtual threads is not tied to the number of native threads.
+
+97-tx Is the statement x = x + 1; an atomic action for the int variable x?
+97-se (Select the best answer)
+97Atw Yes, the increment operation is always atomic
+97Aex Atomic actions cannot be interrupted once begun; while this statement looks simple, it is still composed of a few steps and therefore subject to problems in a multithreaded setting.
+97Btw Yes, but only if x is of type int. Long values cannot be used atomically.
+97Bex While ints and longs can behave differently in some situations, for this simple increment they behave the same. This type of operation is not atomic on any base type.
+97Ctc No, there are distinct steps which can be interrupted
+97Cex While it seems like such a small operation, there are several low-level steps involved. Any one of those low-level steps can be interrupted and the value of x can be adversely affected.
+97Dtw The question is wrong; atomic actions only apply to methods
+97Dex Methods can be synchronized to enforce safe behavior in a multithreaded environment, but you can still have atomic (and non-atomic) statements.
+
+98-tx What package includes thread-safe versions of popular collection classes like Queue and Map?
+98-se (Select one)
+98Atw java.lang
+98Aex This package has many great classes, but it does not include thread-safe collections.
+98Btc java.util.concurrent
+98Bex The java.util.concurrent package contains several collection classes that Java defines as "concurrent," such as ConcurrentLinkedQueue and ConcurrentHashMap.
+98Ctw java.util
+98Cex This package has many great classes including several types of collection classes, but the package is not devoted to concurrent work.
+98Dtw javax.swing
+98Dex This package includes classes for desktop application development. It doesn't contain generic collections. (We'll look at desktop development in Chapter 12.)
+
+
+###
+# Chapter 10
+###
+A0-ti File I/O
+A0-in Chapter 10 Intro
+
+A1-tx How could you check to see if a given file already exists?
+A1-se (Select all that apply)
+A1Atc java.io.File.exists()
+A1Aex An instance of the File class includes the exists() method which returns a true or false answer.
+A1Btw java.lang.System.metadata()
+A1Bex The System class provides a lot of great information and access to local resources, but file existence is not one of them.
+A1Ctc java.nio.file.Files.exists()
+A1Cex The java.nio.file.Files.exists() helper method is a great way to see if a file already exists.
+A1Dtw You can't. Java requires a native library to talk to the filesystem.
+A1Dex While native libraries (libraries written in a language like C that can access things outside the JVM) can certainly test files, Java has other, simpler means that do not require extra software.
+
+A2-tx If you have to work with a legacy text file using an old encoding scheme, such as ISO 8859, how might you set up a reader to properly convert that content to something like UTF-8?
+A2-se (Select one)
+A2Atw Use the jtext command-line tool
+A2Aex There are a number of ancillary tools in the JDK, but jtext is not one of them.
+A2Btc Provide a specific encoding to the reader
+A2Bex You can supply an appropriate character set (java.nio.charset.Charset) to the constructor of FileReader to safely convert the file to Java strings.
+A2Ctw Java automatically converts all text files
+A2Cex Java has defaults, of course, but it does not automatically alter the content of files.
+A2Dtw Use a file channel
+A2Dex Channels primarily pay attention to bytes and would still require specific instructions to convert character encodings.
+
+A3-tx Which package has the best classes for non-blocking file I/O?
+A3-se (Select one)
+A3Atc java.nio
+A3Aex One of the primary features of the java.nio package and its subpackages is support for non-blocking I/O.
+A3Btw java.lang
+A3Bex The java.lang package contains many useful, low-level classes, but non-blocking I/O is handled elsewhere.
+A3Ctw java.net
+A3Cex The java.net package includes non-blocking I/O options for network traffic, but the package does not work with local filesystems.
+A3Dtw java.util
+A3Dex You may store content loaded from a file in one of the collection classes of the java.util package, but it does not play a role in file I/O, blocking or otherwise.
+
+A4-tx Which type of input stream might you use to parse a binary file, such as a JPEG-compressed image?
+A4-se (Select all that apply)
+A4Atw JPEGStream from javax.swing
+A4Aex Sounds like a good fit, but sadly this class does not exist.
+A4Btc BinaryStream from java.io
+A4Bex Sounds like a good fit, but sadly this class does not exist. 
+A4Ctc DataInputStream from java.io
+A4Cex From java.io, you could use the DataInputStream class. 
+A4Dtc ByteBuffer from java.nio
+A4Dex For NIO, channels and bufferes (like ByteBuffer) naturally support binary data.
+
+A5-tx What are the three standard text streams built into the System class?
+A5-se (Select three)
+A5Atc STDIN (System.in)
+A5Aex Standard Input is the stream for supplying input at the command line and is available as System.in.
+A5Btc STDOUT (System.out)
+A5Bex Standard Output is the stream for printing normal output and status messages at the command line and is available as System.out.
+A5Ctc STDERR (System.err)
+A5Cex Standard Error is the stream for printing error messages at the command line and is available as System.err.
+A5Dtw STDDEF (System.default)
+A5Dex A default stream would be nice, but sadly this stream is fictitious.
+
+A6-tx Absolute paths begin at a root (/ or C:\, for example). Where do relative paths begin? More specifically, where are relative paths relative to?
+A6-se (Select the best answer)
+A6Atw They are relative to the user's home directory.
+A6Aex While a program may be launched from the user's home directory, this folder is not the typical starting point for relative paths.
+A6Btw They are relative to the current working directory.
+A6Bex Relative paths are relative to the "working directory" which is typically where you started the program from if you are using the command line. In most IDEs, the working directory is something that can be configured.
+A6Ctw They are relative to where Java was installed.
+A6Cex The JAVA_HOME environment variable does keep track of where Java-related tools and libraries live, but it is not the basis for relative paths.
+A6Dtw They are relative to the user's desktop.
+A6Dex A program could reasonably be started from the desktop, but this folder is not the typical starting point for relative paths.
+
+A7-tx How do you retrieve a NIO channel from an existing FileInputStream?
+A7-se (Select one)
+A7Atw upgrade()
+A7Aex Channels have some benefits over standard file streams, but this method does not exist.
+A7Btw convert()
+A7Bex A plausible method name, but sadly it does not exist.
+A7Ctw getAlternate()
+A7Cex Channels are certainly alternatives to standard streams, but this method does not exist.
+A7Dtc getChannel()
+A7Dex If you already have an instance of FileInputStream, you can use its getChannel() method to return a FileChannel associated with the input stream.
+
+
+###
+# Chapter 11
+###
+B0-ti Functional Approaches
+B0-in Chapter 11 Intro
+
+B1-tx Which package contains the majority of functional interfaces?
+B1-se (Select one)
+B1Atw java.lang
+B1Aex The java.lang package contains many useful classes used in every Java application, but it does not contain the bulk of Java's functional interfaces.
+B1Btw java.io
+B1Bex The java.io package contains classes and interfaces for file I/O. Some of these interfaces can work in functional settings, but on the whole it does not include many elements relevant to functional programming.
+B1Ctc java.util.function
+B1Cex While functional interfaces are scattered throughout the JDK, you will find the bulk of the "official" interfaces defined in the java.util.function package.
+B1Dtw javax.lambda
+B1Dex Great name for a functional package in Java, but sadly it does not exist.
+
+B2-tx Do you need to use any special flags when compiling or running Java applications that use functional features like lambdas?
+B2-se (Select the best answer)
+B2Atc No
+B2Aex The many FP features currently available in Java are full members of the JDK. There are no preview or beta flags required to compile or execute Java code that uses them.
+B2Btw Yes, --enable-preview and -source as with other preview features
+B2Bex Lambdas have been part of Java since version 8 and do not need the --enable-preview or -source flags.
+B2Ctw Yes, --fp
+B2Cex A great name for a switch to enable functional features, but this flag is not part of Java.
+B2Dtw Yes, --Xlambda
+B2Dex While Java regularly uses the "X" prefix for some command-line options, this flag is not part of Java.
+
+B3-tx How do you create lambda expressions with multiple statements in the body?
+B3-se (Select one)
+B3Atc Use a body block similar to a loop body
+B3Aex You can use a curly brace block on the right side of the lambda if you have multiple statements. If your lambda returns a value, you can use the standard return statement as well.
+B3Btw List them and place a break statement at the end
+B3Bex This approach works for switch/case statements, but will not work for lambdas.
+B3Ctw You can't; lambda bodies must be a single line
+B3Cex Happily Java lambdas can in fact have multiline bodies.
+B3Dtw Prefix each body line with "::"
+B3Dex The "::" operator does play a role in lambda syntax as the separator for method references, but it is not a way to group multiple lines into a lambda body.
+
+B4-tx Can lambda expressions be void? Can they return values?
+B4-se (Select one)
+B4Atw No they can't be void, so yes they must return values
+B4Aex Lambda expressions can return values, but that is not required. They can be void.
+B4Btw They must be void, so no they can't return values
+B4Bex Although lambda expressions can be void, they regularly return values as well.
+B4Ctw Lambda expressions always return a Boolean value to indicate whether they completed successfully
+B4Cex Some expressions may return a Boolean value, but that is not a requirement.
+B4Dtw Yes they can be void, and yes they can return values.
+B4Dex Correct on both counts. Lambda expressions run the same gamut of options as methods. You can have lambdas that take no arguments and return no values. You can have lambdas that consume arguments, but produce no results. You can have lambda generators that don&rsquo;t have arguments but do return values. Finally, you can have lambdas that accept one or more arguments and return a value.
+
+B5-tx Can you reuse a stream after you have processed it?
+B5-se (Select the best answer)
+B5Atc No
+B5Aex Once you start processing a stream, that's it. Attempting to reuse a stream will result in an exception.
+B5Btw Yes, but only once (two uses max)
+B5Bex You can create a second, separate stream from the same source, but you cannot reuse the same stream object.
+B5Ctw Yes, as often as you need
+B5Cex You can't reuse a source directly, but you can always create a new stream from the same source as often as you need.
+B5Dtw Depends on the source of the stream
+B5Dex While you can't reuse a stream once it is started, you can always create a new stream from the same source--regardless of the, uh, source of the source. :)
+
+B6-tx How might you take a stream of objects and convert it to a stream of integers?
+B6-se (Select one)
+B6Atw You can't. Object streams cannot be converted to base-type streams.
+B6Aex Happily you can use intermediate operations to accomplish this goal.
+B6Btw Use a cast like "(int)"
+B6Bex Casting works between base types and between compatible object hierarchies, but it cannot be used to conver the elements in a stream.
+B6Ctc Use mapToInt()
+B6Cex You could use one of the mapToInt() variations from the Stream class. This intermediate operation accepts a lambda that converts any object type to an int (or other appropriate base type).
+B6Dtw Java does this automatically
+B6Dex While Java will automatically box and unbox base types and their object counterparts like Integer or Double, streams of arbitrary objects cannot use this mechanism.
+
+B7-tx If you have a stream that filters out empty lines from a file, what operation might you use to tell you how many lines had some content?
+B7-se (Select one)
+B7Atc Use count()
+B7Aex The easiest way to count the remaining lines would be to use the count() terminal operation. You could also create your own reducer or use a collector and then query the length of the resulting list.
+B7Btw You can't; you would need to invert the filter.
+B7Bex Streams can work in myriad ways. You can remove things you don't want and still process the elements that remain.
+B7Ctw Use not().empty()
+B7Cex Composing filters and operations is definitely at the heart of stream processing, but these made up operations can't help.
+B7Dtw Use forEach()
+B7Dex The forEach() terminal operation could be used to print out each non-empty line, but you would then need some other way to count them.
+
+
+###
+# Chapter 12
+###
+C0-ti Desktop Applications
+C0-in Chapter 12 Intro
+
+C1-tx Which component would you use to display some text to the user?
+C1-se (Select one)
+C1Atc JLabel
+C1Aex While you could use a variety of text-based components, JLabel is the simplest way to show the user some (read-only) textual information.
+C1Btw File
+C1Bex Files do contain text, but the File class only refers to local files and cannot be used in a Swing application to display anything.
+C1Ctw JFrame
+C1Cex JFrame sits at the heart of a Swing application as the main container, but it does not display text itsefl.
+C1Dtw JButton
+C1Dex Buttons have labels, but you can't include much text and users expect to click buttons, so not the best option.
+
+C2-tx Which component(s) would you use to allow the user to enter text?
+C2-se (Select all that apply)
+C2Atw JLabel
+C2Aex While you can display text in a label, it doesn't normally allow user input.
+C2Btc JTextField
+C2Bex For words or phrases, JTextField is a great choice for getting user input.
+C2Ctw JButton
+C2Cex Buttons typically direct action in an application. They could produce text input, but there are better components to use.
+C2Dtc JTextArea
+C2Dex For larger amounts of text, JTextArea is an efficient component for user input.
+
+C3-tx What event does clicking a button generate?
+C3-se (Select one)
+C3Atw ButtonEvent
+C3Aex A likely name, but Java does not have a ButtonEvent class.
+C3Btc ActionEvent
+C3Bex Clicking a button or any button-like component such as JMenuItem generates an ActionEvent.
+C3Ctw ItemEvent
+C3Cex Java does have an ItemEvent, but it is generated by components such as JCheckBox, not by typical buttons.
+C3Dtw ChangeEvent
+C3Dex Change events are generated by components like JSlider, not by typical buttons.
+
+C4-tx Which listener should you attach to JList if you want to know when the user changes the selected item?
+C4-se (Select one)
+C4Atw ChangeListener
+C4Aex A reasonable guess, but JList does not generate change events.
+C4Btw ActionListener
+C4Bex Clickable components like JButton and JMenuItem generate action events; JList does not.
+C4Ctc ListSelectionListener
+C4Cex You can implement the ListSelectionListener from the javax.swing.event package to receive list selection (and deselection) events from a JList object.
+C4Dtw MouseListener
+C4Dex You could conceivably recreate the current selection in a JList by processing raw mouse events, but there are better listeners for watching the user's selection.
+
+C5-tx What is the default layout manager for JPanel?
+C5-se (Select one)
+C5Atw PanelLayout
+C5Aex Great name, but sadly no such layout manager exists.
+C5Btw BorderLayout
+C5Bex While JFrame sets BorderLayout for its content pane--a JPanel--BorderLayout is not the default manager for general JPanel instances.
+C5Ctw GridLayout
+C5Cex GridLayout makes easy work of simple row and column arrangements, it is not the default manager for JPanel.
+C5Dtc FlowLayout
+C5Dex By default, JPanel uses the FlowLayout manager. One notable exception to this default is the content pane of JFrame. That pane is a JPanel but the frame automatically changes the pane's manager to BorderLayout.
+
+C6-tx Which thread is responsible for processing events in Java?
+C6-se (Select one)
+C6Atw JBackgroundThread
+C6Aex Java does have thread factory classes, but there are no classes like the made up JBackgroundThread for specific threads.
+C6Btc The event dispatch thread
+C6Bex The event dispatch thread, sometimes called the event dispatch queue, manages delivery of events and updates to components on screen.
+C6Ctw The jvm thread
+C6Cex Fun name, but there is no specific thread known as the jvm thread.
+C6Dtw The graphics thread
+C6Dex Threads play a critical role in graphical applications, but there is no thread known by this name.
+
+C7-tx What method would you use to update a component like JLabel after a background task completes?
+C7-se (Select one)
+C7Atc SwingUtilities.invokeAndWait()
+C7Aex You could use SwingUtilities.invokeAndWait() if you want to wait for the label to be updated before processing any other events. You could use SwingUtilities.invokeLater() if it doesn't matter exactly when the label gets updated.
+C7Btw SwingUtilities.background()
+C7Bex A plausible name, but no such helper method exists.
+C7Ctw System.out.println()
+C7Cex While println() is great for getting information out to the user, it does not update graphical components.
+C7Dtw repaint()
+C7Dex The repaint() method does refresh the display of a component, but it does not directly manage background tasks and would not know when any of them complete.
+
+C8-tx What container holds JMenuItem objects?
+C8-se (Select the best answer)
+C8Atw JPanel
+C8Aex JPanel does hold other Swing components, but it is not designed for menus or menu items.
+C8Btw JFrame
+C8Bex JFrame does hold other Swing components, including menu bars, but it does not directly contain menus or menu items.
+C8Ctw java.awt.Container
+C8Cex While the Container class is certainly part of the containment hierarchy, you rarely instantiate it directly and it is not meant to contain menus or menu items. 
+C8Dtc JMenu
+C8Dex A JMenu object can hold JMenuItem objects as well as nested JMenu objects. The menus themselves are contained in a JMenuBar.
+
+
+###
+# Chapter 13
+###
+D0-ti Network Programming
+D0-in Chapter 13 Intro
+
+D1-tx Which networking protocols does the URL class support by default?
+D1-se (Select all that apply)
+D1Atc HTTP
+D1Aex Java&rsquo;s URL class includes support for HTTP.
+D1Btc FTP
+D1Bex Java&rsquo;s URL class includes support for FTP.
+D1Ctw SSH
+D1Cex The secure shell protocol allows users to connect to remote systems for tasks such as system administration, but it is not directly supported by the URL class.
+D1Dtc HTTPS
+D1Dex Java&rsquo;s URL class includes support for HTTPS.
+
+D2-tx Can you use Java to download binary data from an online source?
+D2-se (Select the best answer)
+D2Atw No
+D2Aex Happily Java can handle both plaintext and binary data from local and online sources.
+D2Btw Yes, but only PNG and JPG files
+D2Bex Java can load image data in a variety of ways, but it can also handle arbitrary binary data.
+D2Ctw Yes, but only MP3 files
+D2Cex Java can load audio data in a few ways, but it can also handle arbitrary binary data.
+D2Dtc Yes
+D2Dex Byte streams lie at the heart of all network data in Java. You can read the raw bytes, or you can chain some other higher-level stream such as DataInputStream to parse specific elements like integers.
+
+D3-tx How do you send form data to a web server using Java? (No need for a fully functional application, we just want you to think about the high-level steps you take and the Java classes involved.)
+D3-se (Select the best option)
+D3Atc Using the URL class and the POST command
+D3Aex You can use the URL class to open a connection to a web server. Before making any requests, you can configure the connection for bidirectional communication. The HTTP POST command allows you to send data to the server in the body of your request.
+D3Btw Using a native library
+D3Bex While you could certainly write a native library to accomplish this task, you do not need anything other than classes already available in the standard JDK.
+D3Ctw Using one of the collection classes
+D3Cex You might use a collection to store the form data before sending anything, but the collection classes do not have any mechanism for networking.
+D3Dtw You can't
+D3Dex Happily, it is possible to send data to and receive data from web servers using classes available Java.
+
+D4-tx What class do you use to listen for incoming network connections?
+D4-se (Select one)
+D4Atw SocketListener
+D4Aex While this made up class fits the pattern of Java event handlers, it is not how you wait for a network connection request.
+D4Btw URLConnection
+D4Bex This class is more typically used by clients to manage low-level details of a web server connection. It cannot accept new connections itself.
+D4Ctc java.net.ServerSocket
+D4Cex You use the java.net.ServerSocket class to create a network listener.
+D4Dtw ByteBuffer
+D4Dex You can use buffers and channels with network connections, but the ByteBuffer class doesn't have any direct networking support.
+
+D5-tx When creating your own server like we did for our game, are there any rules for picking a port number?
+D5-se (Select one)
+D5Atw Not really, it just needs to be a positive integer
+D5Aex Unfortunately the range of acceptable port numbers is much more limited.
+D5Btc Yes, it should be an integer between 1024 and 65535
+D5Bex Port numbers must be between 0 and 65,535 with ports below 1024 typically reserved for well-known services that often require special permissions to use.
+D5Ctw Yes, it must be an integer greater than 1,000,000
+D5Cex Port numbers must fit in a two-byte value, so cannot be much larger than 65K.
+D5Dtw Yes, it must be a Mersenne prime
+D5Dex Fun numbers (primes of the form 2^n - 1), but happily we are not limited to this set for network ports.
+
+D6-tx Can a server application written in Java support multiple simultaneous clients?
+D6-se (Select the best match)
+D6Atw Yes, but only two
+D6Aex Happily Java allows many more than two client connections at a time.
+D6Btc Yes
+D6Bex While you can only create one ServerSocket on a given port, you can accept hundreds or even thousands of clients and process their requests in a thread.
+D6Ctw No, you can only have one client per server
+D6Cex Luckily Java supports many more simultaneous clients.
+D6Dtw Only on Linux servers
+D6Dex As long as Java runs on your operating system (macOS, Windows, Linux), it supports many clients per ServerSocket.
+
+D7-tx How many simultaneous servers can a given client Socket instance talk to?
+D7-se (Select one)
+D7Atc 1
+D7Aex A client socket only communicates with one host on one port. A client application may allow multiple, distinct sockets for communicating with multiple servers at the same time, but each socket will still talk to a single server.
+D7Btw 2
+D7Bex While you can create multiple client sockets in a single application, each socket can only talk to one server at a time.
+D7Ctw 65,535
+D7Cex Many parts of the Internet Protocol use 65K as a limit, client sockets can only talk to one server at a time.
+D7Dtw None, the Socket class is not compatible with ServerSocket hosts
+D7Dex Java's ServerSocket and Socket classes work hand-in-hand. A ServerSocket can accept many incoming connections, and a Socket can talk to one server.
 
