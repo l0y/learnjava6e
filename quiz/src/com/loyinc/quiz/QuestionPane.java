@@ -1,6 +1,5 @@
 package com.loyinc.quiz;
 
-import com.loyinc.util.CWLabel;
 import com.loyinc.util.Config;
 import com.loyinc.util.RollingButtonGroup;
 

@@ -28,6 +28,7 @@ public class QuizFrame extends JFrame implements TreeSelectionListener {
     JPanel leftPane = new JPanel(new BorderLayout(0,5));
     JScrollPane tsp = new JScrollPane(nav);
     tsp.setMinimumSize(nav.getMinimumSize());
+    tsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     leftPane.add(BorderLayout.CENTER, tsp);
     leftPane.add(BorderLayout.SOUTH, qProgress);
 
@@ -43,7 +44,6 @@ public class QuizFrame extends JFrame implements TreeSelectionListener {
   public void valueChanged(TreeSelectionEvent tse) {
     DefaultMutableTreeNode node = (DefaultMutableTreeNode) tse.getPath().getLastPathComponent();
     Object obj = node.getUserObject();
-    System.out.println("Selected: " + obj);
     // One of three possibilities for our object: root, node, leaf
     if (obj instanceof Chapter) {
       // Same type of user object for both the root and all chapter nodes

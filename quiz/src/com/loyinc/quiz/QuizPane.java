@@ -3,8 +3,6 @@ package com.loyinc.quiz;
 import javax.swing.*;
 import javax.swing.tree.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import com.loyinc.util.*;
 

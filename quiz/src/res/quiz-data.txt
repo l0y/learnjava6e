@@ -45,7 +45,7 @@
 # Chapter 2, 5 questions
 ###
 20-ti A First Application
-20-in This chapter covered some simple Java code including the canonical first application, "Hello, world."
+20-in This chapter covers some simple Java code including the canonical first application, "Hello, world."
 
 21-tx What command do you use to compile a Java source file?
 21-se (Select one)
@@ -194,6 +194,7 @@
 
 43-tx Which looping constructs does Java support?
 43-se (Select all that apply)
+43-co 4
 43Atc for (standard)
 43Aex Java supports the classic for loop which is good for counting or traversing a range.
 43Btc for (enhanced)
@@ -277,6 +278,7 @@
 
 53-tx Java does not support classic multiple inheritance. What mechanisms does Java provide as alternatives?
 53-se (Select all that apply)
+53-co 4
 53Atw Inner Classes
 53Aex Inner classes do not help with multiple inheritence, although they do make it easier to encapsulate some bits of logic.
 53Btw Overloading
@@ -630,7 +632,7 @@
 95Dex Many limits in Java use this value, but native threads only support a single platform thread.
 
 96-tx How many virtual threads can one native thread support?
-96-se (Select the best answer)
+96-se (Select the best match)
 96Atw None, virtual threads are not related
 96Aex Virtual threads are still related to native threads.
 96Btw 1
@@ -641,7 +643,7 @@
 96Dex There is no fixed ratio of virtual-to-native, but the key insight with virtual threads is that the number of virtual threads is not tied to the number of native threads.
 
 97-tx Is the statement x = x + 1; an atomic action for the int variable x?
-97-se (Select the best answer)
+97-se (Select the best match)
 97Atw Yes, the increment operation is always atomic
 97Aex Atomic actions cannot be interrupted once begun; while this statement looks simple, it is still composed of a few steps and therefore subject to problems in a multithreaded setting.
 97Btw Yes, but only if x is of type int. Long values cannot be used atomically.
@@ -667,10 +669,11 @@
 # Chapter 10
 ###
 A0-ti File I/O
-A0-in Chapter 10 Intro
+A0-in Interacting with the local filesystem is one of the first tasks new programmers face after learning the basics of a new language. This chapter covers how to read and write files as well as how to manage those files within the filesystem itself.
 
 A1-tx How could you check to see if a given file already exists?
 A1-se (Select all that apply)
+A1-co 4
 A1Atc java.io.File.exists()
 A1Aex An instance of the File class includes the exists() method which returns a true or false answer.
 A1Btw java.lang.System.metadata()
@@ -704,6 +707,7 @@ A3Dex You may store content loaded from a file in one of the collection classes 
 
 A4-tx Which type of input stream might you use to parse a binary file, such as a JPEG-compressed image?
 A4-se (Select all that apply)
+A4-co 4
 A4Atw JPEGStream from javax.swing
 A4Aex Sounds like a good fit, but sadly this class does not exist.
 A4Btc BinaryStream from java.io
@@ -715,6 +719,7 @@ A4Dex For NIO, channels and bufferes (like ByteBuffer) naturally support binary 
 
 A5-tx What are the three standard text streams built into the System class?
 A5-se (Select three)
+A5-co 3
 A5Atc STDIN (System.in)
 A5Aex Standard Input is the stream for supplying input at the command line and is available as System.in.
 A5Btc STDOUT (System.out)
@@ -751,7 +756,7 @@ A7Dex If you already have an instance of FileInputStream, you can use its getCha
 # Chapter 11
 ###
 B0-ti Functional Approaches
-B0-in Chapter 11 Intro
+B0-in Java supports some interesting functional programming (FP) features even though it remains solidly object-oriented. This chapter covers lambdas and stream processing and introduces you to the notion of functional interfaces with a single abstract method (SAM) that lay behind Java's lambda, well, functionality.
 
 B1-tx Which package contains the majority of functional interfaces?
 B1-se (Select one)
@@ -765,7 +770,7 @@ B1Dtw javax.lambda
 B1Dex Great name for a functional package in Java, but sadly it does not exist.
 
 B2-tx Do you need to use any special flags when compiling or running Java applications that use functional features like lambdas?
-B2-se (Select the best answer)
+B2-se (Select the best match)
 B2Atc No
 B2Aex The many FP features currently available in Java are full members of the JDK. There are no preview or beta flags required to compile or execute Java code that uses them.
 B2Btw Yes, --enable-preview and -source as with other preview features
@@ -798,7 +803,7 @@ B4Dtw Yes they can be void, and yes they can return values.
 B4Dex Correct on both counts. Lambda expressions run the same gamut of options as methods. You can have lambdas that take no arguments and return no values. You can have lambdas that consume arguments, but produce no results. You can have lambda generators that don&rsquo;t have arguments but do return values. Finally, you can have lambdas that accept one or more arguments and return a value.
 
 B5-tx Can you reuse a stream after you have processed it?
-B5-se (Select the best answer)
+B5-se (Select the best match)
 B5Atc No
 B5Aex Once you start processing a stream, that's it. Attempting to reuse a stream will result in an exception.
 B5Btw Yes, but only once (two uses max)
@@ -835,7 +840,7 @@ B7Dex The forEach() terminal operation could be used to print out each non-empty
 # Chapter 12
 ###
 C0-ti Desktop Applications
-C0-in Chapter 12 Intro
+C0-in This chapter looks at a wealth of the basic graphical components available in the javax.swing package. While we don't cover all of the components, we look at the most popular elements such as buttons and text fields. This chapter also provides details on Java's use of events to drive user interaction.
 
 C1-tx Which component would you use to display some text to the user?
 C1-se (Select one)
@@ -850,6 +855,7 @@ C1Dex Buttons have labels, but you can't include much text and users expect to c
 
 C2-tx Which component(s) would you use to allow the user to enter text?
 C2-se (Select all that apply)
+C2-co 4
 C2Atw JLabel
 C2Aex While you can display text in a label, it doesn't normally allow user input.
 C2Btc JTextField
@@ -915,7 +921,7 @@ C7Dtw repaint()
 C7Dex The repaint() method does refresh the display of a component, but it does not directly manage background tasks and would not know when any of them complete.
 
 C8-tx What container holds JMenuItem objects?
-C8-se (Select the best answer)
+C8-se (Select the best match)
 C8Atw JPanel
 C8Aex JPanel does hold other Swing components, but it is not designed for menus or menu items.
 C8Btw JFrame
@@ -930,10 +936,11 @@ C8Dex A JMenu object can hold JMenuItem objects as well as nested JMenu objects.
 # Chapter 13
 ###
 D0-ti Network Programming
-D0-in Chapter 13 Intro
+D0-in Arguably as critical these days as access to the local filesystem, more and more applications use networking and network resources to accomplish their overall goals. This chapter covers Java's support for web interactions such as reading content from a web site or submitting data to a web form. It also introduces some of the lower-level networking classes that allow developers to communicate with just about any system online.
 
 D1-tx Which networking protocols does the URL class support by default?
 D1-se (Select all that apply)
+D1-co 4
 D1Atc HTTP
 D1Aex Java&rsquo;s URL class includes support for HTTP.
 D1Btc FTP
@@ -944,7 +951,7 @@ D1Dtc HTTPS
 D1Dex Java&rsquo;s URL class includes support for HTTPS.
 
 D2-tx Can you use Java to download binary data from an online source?
-D2-se (Select the best answer)
+D2-se (Select the best match)
 D2Atw No
 D2Aex Happily Java can handle both plaintext and binary data from local and online sources.
 D2Btw Yes, but only PNG and JPG files
@@ -955,7 +962,7 @@ D2Dtc Yes
 D2Dex Byte streams lie at the heart of all network data in Java. You can read the raw bytes, or you can chain some other higher-level stream such as DataInputStream to parse specific elements like integers.
 
 D3-tx How do you send form data to a web server using Java? (No need for a fully functional application, we just want you to think about the high-level steps you take and the Java classes involved.)
-D3-se (Select the best option)
+D3-se (Select the best match)
 D3Atc Using the URL class and the POST command
 D3Aex You can use the URL class to open a connection to a web server. Before making any requests, you can configure the connection for bidirectional communication. The HTTP POST command allows you to send data to the server in the body of your request.
 D3Btw Using a native library

@@ -10,9 +10,11 @@ import java.util.List;
 
 public class QuizTree extends JTree {
   final static int MARGIN = 8;
+  final static int rHeight = 24;
+  final static int qCount = 100;
   final static Insets GAPPED_INSETS = new Insets(MARGIN,MARGIN,MARGIN,MARGIN);
-  final static Dimension thin = new Dimension(180, 180);
-  final static Dimension thick = new Dimension(300, 300);
+  final static Dimension thin = new Dimension(200, rHeight * qCount);
+  final static Dimension thick = new Dimension(300, rHeight * qCount);
 
   public QuizTree() {
     loadDummyData();
@@ -41,10 +43,7 @@ public class QuizTree extends JTree {
     // And last but not least, tailor for particular operating systems
     // Write once, debug everywhere ;)
     if (Config.isMacOS()) {
-      System.out.println("Tweaing for macs...");
-      this.setRowHeight(24);
-    } else {
-      System.out.println("Not a mac");
+      this.setRowHeight(rHeight);
     }
   }
 

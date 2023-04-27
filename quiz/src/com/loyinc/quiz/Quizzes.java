@@ -1,15 +1,9 @@
 package com.loyinc.quiz;
 
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
-import java.util.jar.*;
 
 /**
  * A utility class for loading and creating quizzes. Static methods are provided
@@ -65,7 +59,7 @@ public class Quizzes {
    * does not include any answers. Within each question, up to four answers
    * are allowed.
    *
-   * The keys a compact shape, CQArr, where:
+   * The key has a compact shape, CQArr, where:
    * - C is a base62 (0-9A-Za-z) chapter number
    * - Q is a base62 question number
    * - A is the answer "number", one of A-D or "-" when not applicable
@@ -77,7 +71,7 @@ public class Quizzes {
    * - tx The text of the question or answer
    * - se The selection instructions (select one, select all that match, ...)
    * - ex The explanation for why an answer is correct/incorrect
-   * - co Correct status of an answer, either "true" or "false"
+   * - co The (optional) count of selectable answers (default is 1 if left out)
    *
    * @param filename Relative or absolute path to key/value text file
    * @return A completed list of chapters with questions and answers
