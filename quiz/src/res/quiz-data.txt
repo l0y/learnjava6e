@@ -190,7 +190,7 @@
 42Ctw // -- these can be nested
 42Cex The double-slash creates a one-line comment in Java. You can technically "nest" these comments in that you are not restricted from using another double-slash on the commented line, but nesting is not really something you think about on a single line of source code.
 42Dtw # -- these can be nested
-42Dex The hash sign (#, or pound sign, or hashtag) is a popular one-line comment character for many languages and shells, but it is not used by Java.
+42Dex The hash sign (#, or pound sign, or hashtag, or octothorpe) is a popular one-line comment character for many languages and shells, but it is not used by Java.
 
 43-tx Which looping constructs does Java support?
 43-se (Select all that apply)

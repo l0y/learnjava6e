@@ -29,6 +29,8 @@ public class QuizPane extends JPanel {
 
   public QuizPane() {
     super(new BorderLayout(8,8));
+    this.setBackground(Color.WHITE);
+    this.setOpaque(true);
     this.setBorder(BorderFactory.createEmptyBorder(5,8,5,8));
     buildButtonPane();
     titleLabel.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
@@ -124,7 +126,8 @@ public class QuizPane extends JPanel {
     } else {
       questionPane.explanation.setText("Not quite. " + currentQuestion.getExplanation());
     }
-  }
+    navTree.repaint();
+}
 
   public void setQuestion(Question qu) {
     this.currentQuestion = qu;

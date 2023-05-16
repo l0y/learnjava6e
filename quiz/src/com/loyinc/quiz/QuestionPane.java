@@ -32,6 +32,8 @@ public class QuestionPane extends JPanel implements ItemListener {
 
   public QuestionPane() {
     super(new GridBagLayout());
+    setOpaque(true);
+    setBackground(Color.WHITE);
     // 3 columns (Qnum/Anum/QAtext)
     // 16 rows, 3 each for the question and 4 answers (2 content, 1 gap), one explanation
     Config.applyPrefs(qNumLabel);
@@ -64,6 +66,7 @@ public class QuestionPane extends JPanel implements ItemListener {
       gbc.anchor = GridBagConstraints.FIRST_LINE_END;
       gbc.fill = GridBagConstraints.NONE;
       options[a] = new JCheckBox((char)('A' + a) + ".");
+      options[a].setBackground(Color.WHITE);
       options[a].addItemListener(this);
       Config.applyPrefs(options[a]);
       add(options[a], gbc);
