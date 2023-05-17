@@ -491,7 +491,7 @@
 # Chapter 8
 ###
 80-ti Text and Core Utilities
-80-in We've seen a lot of Java's structure and mechanisms like loops, branching, and try/catch statements for managing the flow of control. This chapter dives into the parts of Java that help you store and manipulate data. The String class holds the ubiquitous text used throughout an application. The java.util package contains several classes for doing all sorts of useful tasks like performing advanced math, managing dates and times, and converting between data types. And regular expressions are a powerful way to parse and edit a wide variety of alphanumeric content.
+80-in This chapter dives into the parts of Java that help you store and manipulate data. The String class holds the ubiquitous text used throughout an application. The java.util package contains several classes for doing all sorts of useful tasks like performing advanced math, managing dates and times, and converting between data types. And regular expressions are a powerful way to parse and edit a wide variety of alphanumeric content.
 
 81-tx Which class contains the constant for pi? Do you need to import that class to use pi?
 81-se (Select one)
@@ -1012,7 +1012,7 @@ D7Aex A client socket only communicates with one host on one port. A client appl
 D7Btw 2
 D7Bex While you can create multiple client sockets in a single application, each socket can only talk to one server at a time.
 D7Ctw 65,535
-D7Cex Many parts of the Internet Protocol use 65K as a limit, client sockets can only talk to one server at a time.
+D7Cex Many parts of the Internet Protocol use 65K as a limit, but client sockets can only talk to one server at a time.
 D7Dtw None, the Socket class is not compatible with ServerSocket hosts
 D7Dex Java's ServerSocket and Socket classes work hand-in-hand. A ServerSocket can accept many incoming connections, and a Socket can talk to one server.
 

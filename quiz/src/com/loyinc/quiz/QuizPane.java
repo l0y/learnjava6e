@@ -3,6 +3,7 @@ package com.loyinc.quiz;
 import javax.swing.*;
 import javax.swing.tree.*;
 import java.awt.*;
+import java.net.URL;
 
 import com.loyinc.util.*;
 
@@ -15,7 +16,8 @@ public class QuizPane extends JPanel {
   JButton checkButton = new JButton("Check My Answer");
   CardLayout introMgr = new CardLayout();
   JPanel introQuestionPane = new JPanel(introMgr);
-  JTextPane introPane = new JTextPane();
+  JPanel introPane = new JPanel(new BorderLayout());
+  JTextPane introText = new JTextPane();
 
   int chNum = 0; // No chapter selected/Root node selected
   int qNum = 0;
@@ -34,7 +36,14 @@ public class QuizPane extends JPanel {
     this.setBorder(BorderFactory.createEmptyBorder(5,8,5,8));
     buildButtonPane();
     titleLabel.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
-    introPane.setFont(new Font("Arial", Font.BOLD, 16));
+    introText.setFont(new Font("Arial", Font.BOLD, 16));
+    URL iconUrl = ClassLoader.getSystemClassLoader().getResource("res/cover-480.png");
+    JLabel iconLabel = new JLabel(new ImageIcon(iconUrl), JLabel.LEFT);
+    iconLabel.setBackground(Color.WHITE);
+    iconLabel.setOpaque(true);
+    introPane.add(introText, BorderLayout.CENTER);
+    introPane.add(iconLabel, BorderLayout.SOUTH);
+
     questionPane.setQuizPane(this);
     introQuestionPane.add(questionPane, "questions");
     introQuestionPane.add(introPane, "intro");
@@ -133,7 +142,7 @@ public class QuizPane extends JPanel {
     this.currentQuestion = qu;
     this.qNum = qu.getNumber();
     if (qNum == 0) {
-      introPane.setText(qu.getQuestion().replace("\\n", "\n"));
+      introText.setText(qu.getQuestion().replace("\\n", "\n"));
     } else {
       questionPane.setQuestion(qu);
     }
