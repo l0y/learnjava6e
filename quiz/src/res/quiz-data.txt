@@ -228,7 +228,7 @@
 
 46-tx Given the expression: 18 - 7 * 2, what will it evaluate to?
 46-se (Select one)
-46Atc Answer A
+46Atc 4
 46Aex This is an order-of-precedence question. The multiplication of 7 and 2 will occur first, then the subtraction. The final answer is 4.
 46Btw 22
 46Bex This answer probably came from performing the operations left-to-right. If you actually want that result, you could enclose the "18 - 7" portion inside parentheses (just like this aside).
@@ -313,7 +313,7 @@
 56-tx What do you call a class defined inside the scope of another class?
 56-se (Select one)
 56Atc Inner class
-56Aex A simple class defined within the curly braces of another class (not just in the same file) is called an inner class. Inner classes have access to all the variables and methods of the outer class&mdash;including private members. They can be used to help break up your code into manageable and reusable pieces while providing good control over who else can use them.
+56Aex A simple class defined within the curly braces of another class (not just in the same file) is called an inner class. Inner classes have access to all the variables and methods of the outer class--including private members. They can be used to help break up your code into manageable and reusable pieces while providing good control over who else can use them.
 56Btw Anonymous class
 56Bex Anonymous (inner) classes are a popular technique for encapsulating small, one-off bits of logic. But not all inner classes are anonymous.
 56Ctw Interface
@@ -799,8 +799,8 @@ B4Btw They must be void, so no they can't return values
 B4Bex Although lambda expressions can be void, they regularly return values as well.
 B4Ctw Lambda expressions always return a Boolean value to indicate whether they completed successfully
 B4Cex Some expressions may return a Boolean value, but that is not a requirement.
-B4Dtw Yes they can be void, and yes they can return values.
-B4Dex Correct on both counts. Lambda expressions run the same gamut of options as methods. You can have lambdas that take no arguments and return no values. You can have lambdas that consume arguments, but produce no results. You can have lambda generators that don&rsquo;t have arguments but do return values. Finally, you can have lambdas that accept one or more arguments and return a value.
+B4Dtc Yes they can be void, and yes they can return values.
+B4Dex Lambda expressions run the same gamut of options as methods. You can have lambdas that take no arguments and return no values. You can have lambdas that consume arguments, but produce no results. You can have lambda generators that don't have arguments but do return values. Finally, you can have lambdas that accept one or more arguments and return a value.
 
 B5-tx Can you reuse a stream after you have processed it?
 B5-se (Select the best match)
@@ -942,13 +942,13 @@ D1-tx Which networking protocols does the URL class support by default?
 D1-se (Select all that apply)
 D1-co 4
 D1Atc HTTP
-D1Aex Java&rsquo;s URL class includes support for HTTP.
+D1Aex Java's URL class includes support for HTTP.
 D1Btc FTP
-D1Bex Java&rsquo;s URL class includes support for FTP.
+D1Bex Java's URL class includes support for FTP.
 D1Ctw SSH
 D1Cex The secure shell protocol allows users to connect to remote systems for tasks such as system administration, but it is not directly supported by the URL class.
 D1Dtc HTTPS
-D1Dex Java&rsquo;s URL class includes support for HTTPS.
+D1Dex Java's URL class includes support for HTTPS.
 
 D2-tx Can you use Java to download binary data from an online source?
 D2-se (Select the best match)

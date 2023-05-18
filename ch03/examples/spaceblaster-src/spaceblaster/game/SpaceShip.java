@@ -1,3 +1,5 @@
+package spaceblaster.game;
+
 public class SpaceShip {
   private String laserSound = "pew";
 

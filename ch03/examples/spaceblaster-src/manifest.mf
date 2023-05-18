@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: 11.0.16
+Main-Class: spaceblaster.game.Game
+

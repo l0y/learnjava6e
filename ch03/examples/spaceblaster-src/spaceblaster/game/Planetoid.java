@@ -1,3 +1,5 @@
+package spaceblaster.game;
+
 public class Planetoid {
   public void destroy() {
     System.out.println("We've been hit! It's as if millions of voices suddenly cried out");
