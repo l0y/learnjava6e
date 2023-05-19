@@ -27,6 +27,7 @@ public class Field extends JComponent {
 
     // ArrayList covered in Generics chapter
     // synchronizedArrayList covered in Threads chapter
+    // No hedges in this version to highlight the newly randomized tree positions
     Physicist physicist;
     List<Tree> trees = Collections.synchronizedList(new ArrayList<>());
 

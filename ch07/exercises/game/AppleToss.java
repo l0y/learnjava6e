@@ -33,7 +33,7 @@ public class AppleToss extends JFrame {
         player1.setField(field);
         
         // Place our lone hedge
-	field.setupHedge();
+	      field.setupHedge();
 
         // And now make a few trees for target practice
         for (int row = 1; row <= 2; row++) {

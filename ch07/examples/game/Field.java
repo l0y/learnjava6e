@@ -25,6 +25,7 @@ public class Field extends JComponent {
     // synchronizedArrayList is covered in chapter 9 on Threads
     Physicist physicist;
     List<Tree> trees = Collections.synchronizedList(new ArrayList<>());
+    Hedge hedge = new Hedge();
 
     protected void paintComponent(Graphics g) {
         g.setColor(fieldColor);
@@ -32,6 +33,7 @@ public class Field extends JComponent {
         for (Tree t : trees) {
             t.draw(g);
         }
+        hedge.draw(g);
         physicist.draw(g);
     }
 
@@ -39,6 +41,11 @@ public class Field extends JComponent {
         physicist = p;
     }
 	
+    public void setupHedge() {
+        // Setup our new obstacle similar to the tree
+        hedge.setPosition(500,200);
+    }
+
     public void addTree(int x, int y) {
         Tree tree = new Tree();
         tree.setPosition(x,y);
