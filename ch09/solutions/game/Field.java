@@ -98,11 +98,17 @@ public class Field extends JComponent {
 
   void startAnimation() {
     // Platform threads
-    //animationThread = new Thread(new Animator());
-    //animationThread.start();
+    animationThread = new Thread(new Animator());
+    animationThread.start();
 
     // Virtual threads
-    animationThread = Thread.startVirtualThread(new Animator());
+    // Remember you need Java 19 or higher to use virtual threads.
+    // In addition to the correct version of Java, make sure your
+    // IDE has Preview Feature support enabled. We've left this line
+    // commented out so that this class still compiles with older
+    // versions. When you're ready, comment out the platform thread
+    // lines above and uncomment this line:
+    //animationThread = Thread.startVirtualThread(new Animator());
   }
 
   class Animator implements Runnable {
